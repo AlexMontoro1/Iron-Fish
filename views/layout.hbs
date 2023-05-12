@@ -13,11 +13,14 @@
 
 
       <nav>
-         <a href="/search/home">Inicio</a>
-         <a href="/auth/signup">Registro</a>
-         <a href="/auth/login">Acceder</a>
+         <a href="/search">Inicio</a>
          <a href="/search/catalog">Catálogo</a>
-         <a href=""></a>
+         {{#if this.isUserOnline}}
+         <a href="/profile/main">Mi perfil</a>
+         {{else}}
+         <a href="/auth/signup">Registro</a>
+         <a href="/auth/login">Acceder</a>         
+         {{/if}}
          <a href=""></a>
          <a href=""></a>
          <a href=""></a>

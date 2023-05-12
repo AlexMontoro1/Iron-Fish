@@ -1,0 +1,11 @@
+<div>
+
+    <h1>Catálogo de peces</h1>
+
+    {{#each this.fishParams}}
+    <div>
+     <img src="{{this.url}}" alt="imagen-pez" width="200px">
+    <h3>{{name}}<h3>
+    </div>
+    {{/each}}
+</div>

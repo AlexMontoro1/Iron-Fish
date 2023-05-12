@@ -104,9 +104,9 @@ router.post("/login", async (req,res,next) => {
               return;
         }
         req.session.activeUser = foundUser;
-        req.session.save(() => {});
-
-        res.redirect("/profile/main");
+        req.session.save(() => {
+          res.redirect("/profile/main");
+    });        
     } catch (err) {
         next(err)
     }

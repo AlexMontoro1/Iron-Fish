@@ -1,6 +1,6 @@
 [
     {
-  "name": "Guppy",
+  "name": "guppy",
   "description": "Los guppies son los peces principiantes ideales que vienen en una gran variedad de colores con un temperamento pacífico.",
   "type": "tropical",
   "lifeExp": "3 años",
@@ -8,12 +8,12 @@
   "url": "https://acuario-mania.com/wp-content/uploads/2020/04/guppies.jpg"
   },
   {
-  "name": "Pez payaso",
+  "name": "pez payaso",
   "description": "Generalmente se les conoce como los mejores peces de agua salada para principiantes, tanto por su naturaleza amistosa como por su capacidad de vivir en tanques de tan sólo 40 litros.",
   "type": "salt",
   "lifeExp": "10 años",
   "aggr": 2,
-  "url": "https://acuario-mania.com/wp-content/uploads/2020/04/z-payaso.jpg"
+  "url": "https://www.anipedia.net/imagenes/pez-payaso-800x375.jpg"
   },
   {
   "name": "goldfish",
@@ -21,7 +21,7 @@
   "type": "cold",
   "lifeExp": "10 años",
   "aggr": 0,
-  "url": "https://www.pecesdeacuarios.net/wp-content/uploads/2018/03/pez-rojo-carassius-auratus-ficha.jpg"
+  "url": "https://www.mysis.com/hobbyist/wp-content/uploads/sites/2/2018/09/Goldfish-Image-1024x694.jpg"
   },
   {
   "name": "betta",
