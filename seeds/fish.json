@@ -1,0 +1,42 @@
+[
+    {
+  "name": "Guppy",
+  "description": "Los guppies son los peces principiantes ideales que vienen en una gran variedad de colores con un temperamento pacífico.",
+  "type": "tropical",
+  "lifeExp": "3 años",
+  "aggr": 1,
+  "url": "https://acuario-mania.com/wp-content/uploads/2020/04/guppies.jpg"
+  },
+  {
+  "name": "Pez payaso",
+  "description": "Generalmente se les conoce como los mejores peces de agua salada para principiantes, tanto por su naturaleza amistosa como por su capacidad de vivir en tanques de tan sólo 40 litros.",
+  "type": "salt",
+  "lifeExp": "10 años",
+  "aggr": 2,
+  "url": "https://acuario-mania.com/wp-content/uploads/2020/04/z-payaso.jpg"
+  },
+  {
+  "name": "goldfish",
+  "description": "Su origen está en Asia y está muy emparentado con las carpas, ya que los dos son ciprínidos.",
+  "type": "cold",
+  "lifeExp": "10 años",
+  "aggr": 0,
+  "url": "https://www.pecesdeacuarios.net/wp-content/uploads/2018/03/pez-rojo-carassius-auratus-ficha.jpg"
+  },
+  {
+  "name": "betta",
+  "description": "Estos agresivos e inteligentes peces son uno de los más hermosos disponibles, criados por sus largas y coloridas aletas caudales.",
+  "type": "cold, tropical",
+  "lifeExp": "3-4 años",
+  "aggr": 5,
+  "url": "https://fatyzoo.es/1632-large_default/betta-macho-splendens.jpg"
+  },
+  {
+  "name": "damisela", 
+  "description": "La variación significa que cada especie tiene sus propias necesidades, pero todas son territoriales, por lo que necesitan ser emparejadas con peces más grandes que las pongan en su lugar si se vuelven demasiado agresivas.",
+  "type": "salt",
+  "lifeExp": "3-5 años",
+  "aggr": 4,
+  "url": "https://laverdadnoticias.com/export/sites/laverdad/img/2019/04/03/pez-damisela-azul-cola-amarilla.png_1747755651.png"
+  }
+  ]
