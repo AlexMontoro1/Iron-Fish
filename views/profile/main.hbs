@@ -2,4 +2,20 @@
 
     <h3>Pagina de perfil principal</h3>
 
+    <div>
+        <p>Nombre de usuario: {{userParams.username}}</p>
+        <p>Correo electrónico: {{userParams.email}}</p>
+        <p>Fecha de creacion de la cuenta: {{userParams.createdAt}}</p>
+         <label for="pez-favorito">Pez Favorito:</label>
+        <select id="pez-favorito" name="pez-favorito">
+            {{#each fishName}}
+            <option value="{{name}}">{{name}}</option>
+            {{/each}}
+        </select>
+        <br>
+        <a href="/profile/edit">
+        <button>Editar Cuenta</button>
+        </a>
+    </div>
+
 </div>
