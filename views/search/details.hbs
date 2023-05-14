@@ -1,0 +1,13 @@
+<div>
+    <h3>Detalles del pez</h3>
+    {{#with fishParams}}
+    <img src="{{url}}" alt="pez" width="400px">
+    <h3>Nombre: {{name}}</h3>
+    <h4>Tipo de Agua: {{type}}</h4>
+    <h4>Esperanza de vida: {{lifeExp}}</h4>
+    <h4>Agresividad: {{aggr}}</h4>
+    <p>Descripción: {{description}}</p>
+     {{/with}}
+     <button>Añadir a mi lista</button>
+     <button>Añadir a mi pecera</button>
+</div>

@@ -4,7 +4,10 @@
 
     {{#each this.fishParams}}
     <div>
-     <img src="{{this.url}}" alt="imagen-pez" width="200px">
+        <a href="/search/{{this._id}}/details">
+            <img src="{{this.url}}" alt="imagen-pez" width="200px">
+        </a>
+     
     <h3>{{name}}<h3>
     </div>
     {{/each}}

@@ -5,7 +5,6 @@
     <div>
         <p>Nombre de usuario: {{userParams.username}}</p>
         <p>Correo electrónico: {{userParams.email}}</p>
-        <p>Fecha de creacion de la cuenta: {{userParams.createdAt}}</p>
          <label for="pez-favorito">Pez Favorito:</label>
         <select id="pez-favorito" name="pez-favorito">
             {{#each fishName}}
@@ -15,6 +14,13 @@
         <br>
         <a href="/profile/edit">
         <button>Editar Cuenta</button>
+        </a>
+    </div>
+
+    <div>
+        <p>Lista de peces deseados: {{userParams.wantedFish}}</p>
+        <a href="/search/catalog">
+        <button>Añadir Pez a mi lista</button>
         </a>
     </div>
 
