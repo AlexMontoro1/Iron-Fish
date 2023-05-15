@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcrypt");
 const User = require("../models/User.model.js");
 const Fish = require("../models/Fish.model.js");
 const {
@@ -14,17 +15,30 @@ const { isLogged } = require("../middlewares/auth.middlewares.js");
 router.get("/main", isLogged, async (req, res, next) => {
   try {
     //console.log(req.session.activeUser);
-    const userParams = await req.session.activeUser;
+    const userId = req.session.activeUser._id
+    //console.log(userId);
+    const userParams = await User.findById(userId);
     const fishName = await Fish.find();
-    console.log(userParams);
+    //console.log(userParams);
     res.render("profile/main.hbs", {
       userParams,
       fishName,
+
     });
   } catch (err) {
     next(err);
   }
 });
+
+router.post("/:fishId/main", async (req,res,next)=> {
+  try {
+    const userId = req.session.activeUser._id
+   const fish = await User.findById(userId).populate("wantedFish")
+   
+  } catch (err) {
+    next(err)
+  }
+})
 
 router.get("/edit", isLogged, (req, res, next) => {
   res.render("profile/edit.hbs");
@@ -55,33 +69,34 @@ router.post("/edit", isLogged, async (req, res, next) => {
         //! PREGUNTAR COMO VERIFICAR SI EL USUARIO ES EL MISMO DE LA CUENTA ACTIVA, QUE NO DE EL MENSAJE DE ERROR
       const foundUsername = await User.findOne({ username });
       const foundMail = await User.findOne({ email });
-      if (foundUsername !== null) {
+      const userId = req.session.activeUser._id
+      const userParams = await User.findById(userId);
+      if (foundUsername !== null && foundUsername._id === userId) {
         res.render("profile/edit.hbs", {
           errorMessage: "El usuario ya existe, prueba con otro nombre",
         });
         return;
-      } else if (foundMail !== null) {
+      }
+      if (foundMail !== null && foundMail._id === userId) {
         res.render("profile/edit.hbs", {
           errorMessage:
             "El correo electronico ya existe, prueba con otro correo",
         });
         return;
       }
-      const editedUser = await User.findOneAndUpdate(
-        req.session.activeUser,
+    const salt = await bcrypt.genSalt(12);
+    const encryptedPassword = await bcrypt.hash(password, salt);
+      const editedUser = await User.findByIdAndUpdate(
+        userId,
         {
           username,
           email,
-          password,
+          password: encryptedPassword
         },
         { new: true }
       );
-      console.log(editedUser);
-      req.session.activeUser = {
-        username: editedUser.username,
-        email: editedUser.email,
-        password: editedUser.password,
-      };
+      //console.log(editedUser);
+      //req.session.activeUser = editedUser;
       console.log("changed user !");
       res.redirect("/profile/main");
     }
@@ -89,5 +104,7 @@ router.post("/edit", isLogged, async (req, res, next) => {
     next(err);
   }
 });
+
+
 
 module.exports = router;

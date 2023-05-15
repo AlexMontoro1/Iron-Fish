@@ -36,7 +36,7 @@ router.get("/:fishId/details", async (req,res,next)=> {
        res.render("search/details.hbs",{
         fishParams
        })
-       console.log(fishParams);
+       //console.log(fishParams);
     } catch (err) {
         next(err)
     }

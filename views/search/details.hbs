@@ -8,6 +8,9 @@
     <h4>Agresividad: {{aggr}}</h4>
     <p>Descripción: {{description}}</p>
      {{/with}}
-     <button>Añadir a mi lista</button>
+     <form action="/profile/{{fishParams._id}}/main" method="post">
+        <button>Añadir a mi lista</button>
+     </form>
+     
      <button>Añadir a mi pecera</button>
 </div>
