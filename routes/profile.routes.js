@@ -17,7 +17,7 @@ router.get("/main", isLogged, async (req, res, next) => {
     //console.log(req.session.activeUser);
     const userId = req.session.activeUser._id
     //console.log(userId);
-    const userParams = await User.findById(userId);
+    const userParams = await User.findById(userId).populate("wantedFish", "name");
     const fishName = await Fish.find();
     //console.log(userParams);
     res.render("profile/main.hbs", {
@@ -30,10 +30,18 @@ router.get("/main", isLogged, async (req, res, next) => {
   }
 });
 
-router.post("/:fishId/main", async (req,res,next)=> {
+router.post("/:fishId/main", isLogged ,async (req,res,next)=> {
   try {
     const userId = req.session.activeUser._id
-   const fish = await User.findById(userId).populate("wantedFish")
+   const fishId = await Fish.findById(req.params.fishId)
+   console.log(fishId.name);
+   await User.findByIdAndUpdate(userId, {
+    $addToSet: {
+      wantedFish: fishId
+    }
+   }, {new: true})
+   req.session.message = "¡El pez se ha añadido a tu lista correctamente!";
+   res.redirect("back")
    
   } catch (err) {
     next(err)

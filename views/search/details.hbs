@@ -8,9 +8,12 @@
     <h4>Agresividad: {{aggr}}</h4>
     <p>Descripción: {{description}}</p>
      {{/with}}
+     {{#if this.isUserOnline}}
      <form action="/profile/{{fishParams._id}}/main" method="post">
         <button>Añadir a mi lista</button>
+        <p style="color: rgb(20, 23, 220);">{{req.session.message}}</p>
      </form>
      
      <button>Añadir a mi pecera</button>
+     {{/if}}
 </div>

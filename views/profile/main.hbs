@@ -18,7 +18,10 @@
     </div>
 
     <div>
-        <p>Lista de peces deseados: {{fishName.name}}</p>
+        <p>Lista de peces deseados: {{#each userParams.wantedFish}}
+           | {{name}} |
+            {{/each}}
+        </p>
         <a href="/search/catalog">
         <button>Añadir Pez a mi lista</button>
         </a>
