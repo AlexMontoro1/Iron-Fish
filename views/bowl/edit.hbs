@@ -1,14 +1,14 @@
 <div>  
 
       <h1>Actualiza tu pecera</h1>
-
-  <form action="/bowl/{{bowlParams._id}}/edit" method="post">
+    {{#with bowlParams}}
+  <form action="/bowl/{{_id}}/edit" method="post">
 
     <label for="name">Nombre</label>
-    <input type="text" name="name" />
+    <input type="text" name="name" value="{{name}}"/>
     <br />
     <label for="capacity">Capacidad (Litros)</label>
-    <input type="number" name="capacity" min="1" />
+    <input type="number" name="capacity" min="1" value="{{capacity}}"/>
     <br />
     <label for="water">Tipo de agua</label>
     <select id="waterId" name="water">
@@ -23,6 +23,7 @@
       <option value="Si">Si</option>
       <option value="No">No</option>
     </select>
+    {{/with}}
     <br />
     <button>Actualizar</button>
   </form>
