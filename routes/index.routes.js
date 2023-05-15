@@ -18,5 +18,8 @@ router.use("/profile", profileRouter)
 const searchRouter = require("./search.routes.js")
 router.use("/search", searchRouter)
 
+const bowlRouter = require("./bowl.routes.js")
+router.use("/bowl", bowlRouter)
+
 
 module.exports = router;

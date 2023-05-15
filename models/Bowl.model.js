@@ -12,9 +12,16 @@ const bowlSchema = new mongoose.Schema({
     type: String,
     enum: [ "tropical", "salada", "fria" ]
   },
-  isClosed: Boolean,
+  isClosed: {
+    type: String,
+    enum: ["Si", "No"]
+  },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
 });
+
+const Bowl = mongoose.model("Bowl", bowlSchema);
+
+module.exports = Bowl;

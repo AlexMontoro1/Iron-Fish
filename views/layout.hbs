@@ -1,35 +1,32 @@
-<!DOCTYPE html>
 <html lang="en">
 
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>{{appTitle}}</title>
-      <link rel="stylesheet" href="/stylesheets/style.css" />
-   </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>{{appTitle}}</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
 
-   <body>
+  <body>
 
+    <nav>
+      <a href="/search">Inicio</a>
+      <a href="/search/catalog">Catálogo</a>
+      {{#if this.isUserOnline}}
+        <a href="/profile/main">Mi perfil</a>
+        <a href="/auth/logout">Cerrar sesión</a>
+      {{else}}
+        <a href="/auth/signup">Registro</a>
+        <a href="/auth/login">Acceder</a>
+      {{/if}}
+      <a href=""></a>
+      <a href=""></a>
+    </nav>
 
-      <nav>
-         <a href="/search">Inicio</a>
-         <a href="/search/catalog">Catálogo</a>
-         {{#if this.isUserOnline}}
-         <a href="/profile/main">Mi perfil</a>
-         {{else}}
-         <a href="/auth/signup">Registro</a>
-         <a href="/auth/login">Acceder</a>         
-         {{/if}}
-         <a href=""></a>
-         <a href=""></a>
-         <a href=""></a>
-      </nav>
+    {{{body}}}
 
-
-      {{{body}}}
-
-      <script src="/js/script.js"></script>
-   </body>
+    <script src="/js/script.js"></script>
+  </body>
 
 </html>

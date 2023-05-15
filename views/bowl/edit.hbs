@@ -1,0 +1,31 @@
+<div>  
+
+      <h1>Actualiza tu pecera</h1>
+
+  <form action="/bowl/{{bowlParams._id}}/edit" method="post">
+
+    <label for="name">Nombre</label>
+    <input type="text" name="name" />
+    <br />
+    <label for="capacity">Capacidad (Litros)</label>
+    <input type="number" name="capacity" min="1" />
+    <br />
+    <label for="water">Tipo de agua</label>
+    <select id="waterId" name="water">
+      <option value="tropical">Tropical</option>
+      <option value="salada">Salada</option>
+      <option value="fria">Fria</option>
+    </select>
+
+    <br />
+    <label for="isClosed">Tiene tapa:</label>
+    <select id="is-closed" name="isClosed">
+      <option value="Si">Si</option>
+      <option value="No">No</option>
+    </select>
+    <br />
+    <button>Actualizar</button>
+  </form>
+</div>
+
+</div>

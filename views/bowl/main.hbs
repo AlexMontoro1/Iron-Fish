@@ -1,0 +1,13 @@
+<div>
+
+    <h1>Lista de peceras</h1>
+
+    <ul>
+        {{#each allBowls}}
+            <a href="/bowl/{{_id}}/details"><li>{{name}}</li></a>
+        {{/each}}
+    </ul>
+
+   <a href="/bowl/create"><button>Crear pecera</button></a>
+
+</div>

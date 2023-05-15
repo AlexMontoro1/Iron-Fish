@@ -3,7 +3,10 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User.model.js");
 const bcrypt = require("bcrypt");
-const { passValidation, emailValidation} = require("../utils/verifications.js")
+const {
+  passValidation,
+  emailValidation,
+} = require("../utils/verifications.js");
 
 // Rutas de user
 // Ruta get para renderizar la pagina de registro
@@ -15,12 +18,16 @@ router.post("/signup", async (req, res, next) => {
   const { username, email, password } = req.body;
 
   //Validacion del correo
-  if(emailValidation(email).valid === false){
-    return res.render("auth/signup.hbs", { errorMessage: emailValidation(email).errorMessage })
+  if (emailValidation(email).valid === false) {
+    return res.render("auth/signup.hbs", {
+      errorMessage: emailValidation(email).errorMessage,
+    });
   }
   //Validacion de contraseña
-  if(passValidation(password).valid === false){
-    return res.render("auth/signup.hbs", { errorMessage: passValidation(password).errorMessage })
+  if (passValidation(password).valid === false) {
+    return res.render("auth/signup.hbs", {
+      errorMessage: passValidation(password).errorMessage,
+    });
   }
 
   try {
@@ -102,6 +109,12 @@ router.post("/login", async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+});
+
+router.get("/logout", (req, res, next) => {
+  req.session.destroy(() => {
+    res.redirect("/search");
+  });
 });
 
 module.exports = router;
