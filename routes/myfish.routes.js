@@ -25,10 +25,11 @@ router.get("/:bowlId/create", isLogged, async (req, res, next) => {
 router.post("/:bowlId/create", isLogged, async (req, res, next) => {
   const { name, age, fish } = req.body;
   const userId = req.session.activeUser._id;
-  console.log(req.body);
+  //console.log(req.body);
   try {
     const bowl = await Bowl.findById(req.params.bowlId);
-    const foundFish = await Fish.findOne()
+    const foundFish = await Fish.findOne({name:fish})
+    console.log(foundFish);
     await MyFish.create({
       name,
       age,
@@ -40,5 +41,43 @@ router.post("/:bowlId/create", isLogged, async (req, res, next) => {
     next(error);
   }
 });
+
+router.post("/:myfishId/delete", isLogged, async (req,res,next)=> {
+  try {
+    await MyFish.findByIdAndRemove(req.params.myfishId)
+    res.redirect("back")
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get("/:myfishId/edit", isLogged, async (req,res,next)=> {
+  try {
+    const myFishParams = await MyFish.findById(req.params.myfishId).populate("fish")
+   console.log(myFishParams);
+    const allFish = await Fish.find();
+    //console.log(allFish);
+    res.render("myfish/edit.hbs", {
+      myFishParams,
+      allFish
+    })
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.post("/:myfishId/edit", isLogged, async (req,res,next)=> {
+  const { name, age, fish } = req.body;
+  try {
+    const myFishParams = await MyFish.findByIdAndUpdate(req.params.myfishId,{
+      name,
+      age,
+      fish
+    }, { new:true })
+    res.redirect(`/bowl/${myFishParams.bowl}/details`);
+  } catch (err) {
+    next(err)
+  }
+})
 
 module.exports = router;

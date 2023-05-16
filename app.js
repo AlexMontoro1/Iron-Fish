@@ -15,6 +15,8 @@ const express = require("express");
 const hbs = require("hbs");
 
 const app = express();
+
+
 hbs.registerHelper('eq', function(a, b) {
     return a === b;
   });

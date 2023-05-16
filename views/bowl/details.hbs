@@ -18,6 +18,16 @@
     <button>Eliminar pecera</button>
   </form>
 
+{{#each allFishes}}
+  <h5>{{name}}</h5>
+  <h6>Edad: {{age}}</h6>
+  <h6>Clase: {{fish.name}}</h6>
+  <form action="/myfish/{{_id}}/delete" method="post">
+    <button>Eliminar</button>
+  </form>
+  <a href="/myfish/{{_id}}/edit"><button>Editar</button></a>
+{{/each}}
+
 <br>
 <a href="/myfish/{{bowlParams._id}}/create"><button>Añade nuevo pez</button></a>
 

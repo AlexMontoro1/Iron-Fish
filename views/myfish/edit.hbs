@@ -1,0 +1,21 @@
+<div>
+    <h3>Editar Pez</h3>
+    <form action="/myfish/{{myFishParams._id}}/edit" method="post">
+
+    <label for="name">Nombre</label>
+    <input type="text" name="name" value="{{myFishParams.name}}"/>
+    <br />
+    <label for="age">Edad</label>
+    <input type="number" name="age" min="0" value="{{myFishParams.age}}"/>
+    <br />
+    <label for="fish">Clase de pez</label>
+        <select id="tipo-pez" name="fish">
+            {{#each allFish}}
+            <option value="{{this._id}}" {{#eq myFishParams.fish._id _id}}selected{{/eq}}>{{name}}</option>
+            {{/each}}
+        </select>
+    <br />
+    <button>Editar</button>
+  </form>
+</div>
+

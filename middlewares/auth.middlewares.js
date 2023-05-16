@@ -17,6 +17,7 @@ function isOnline (req, res, next) {
     } next();
 }
 
+
 module.exports = {
     isLogged,
     isOnline,
