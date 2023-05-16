@@ -28,16 +28,14 @@ router.post("/:bowlId/create", isLogged, async (req, res, next) => {
   console.log(req.body);
   try {
     const bowl = await Bowl.findById(req.params.bowlId);
-    const fish = await Fish.findOne({
-      name
-    })
+    const foundFish = await Fish.findOne()
     await MyFish.create({
       name,
       age,
-      fish, 
-      bowl, 
+      fish: foundFish,
+      bowl,
       owner: userId
-    }); res.redirect("/bowl/:bowlId/details")
+    }); res.redirect(`/bowl/${req.params.bowlId}/details`)
   } catch (error) {
     next(error);
   }
