@@ -37,7 +37,7 @@ router.post("/:bowlId/create", isLogged, async (req, res, next) => {
       fish, 
       bowl, 
       owner: userId
-    }); res.redirect("/bowl/main")
+    }); res.redirect("/bowl/:bowlId/details")
   } catch (error) {
     next(error);
   }
