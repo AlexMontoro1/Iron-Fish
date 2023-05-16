@@ -31,7 +31,7 @@ router.get("/main", isLogged, async (req, res, next) => {
 
 router.post("/:fishId/main", isLogged ,async (req,res,next)=> {
   try {
-    const userId = req.session.activeUser._id
+  const userId = req.session.activeUser._id
    const fishId = await Fish.findById(req.params.fishId)
    console.log(fishId.name);
    await User.findByIdAndUpdate(userId, {

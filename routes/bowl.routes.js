@@ -10,7 +10,7 @@ const { isLogged } = require("../middlewares/auth.middlewares.js");
 router.get("/main", isLogged, async (req, res, next) => {
   try {
     const allBowls = await Bowl.find().select({ name: 1 });
-    console.log(allBowls);
+    //console.log(allBowls);
     res.render("bowl/main.hbs", {
       allBowls,
     });
@@ -24,13 +24,16 @@ router.get("/create", isLogged, (req, res, next) => {
 });
 
 router.post("/create", isLogged, async (req, res, next) => {
-  const { name, capacity, water, isClosed, owner } = req.body;
+  const userId = req.session.activeUser._id;
+  const { name, capacity, water, isClosed} = req.body;
+  console.log(userId)
   try {
     await Bowl.create({
       name,
       capacity,
       water,
-      isClosed,     
+      isClosed,
+      owner: userId
     });
     //console.log(req.body)
     res.redirect("/bowl/main");
@@ -40,12 +43,12 @@ router.post("/create", isLogged, async (req, res, next) => {
 });
 
 router.get("/:bowlId/details", isLogged, async (req, res, next) => {
-  try {
+  
+  try {    
     const bowlParams = await Bowl.findById(req.params.bowlId).populate("owner", "username");
-    console.log(bowlParams)
     res.render("bowl/details.hbs", {
       bowlParams,
-    });
+    }); //console.log(bowlParams)
   } catch (error) {
     next(error);
   }

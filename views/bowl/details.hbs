@@ -7,7 +7,7 @@
     <p>Capacidad: {{capacity}}</p>
     <p>Tipo de agua: {{water}}</p>
     <p>Tapa? {{isClosed}}</p>
-    <p>Creador: {{owner}}</p>
+    <p>Creador: {{owner.username}}</p>
 
     <a href="/bowl/{{_id}}/edit"><button>Editar pecera</button></a>
     <br />
@@ -17,5 +17,8 @@
   <form action="/bowl/{{this.bowlParams._id}}/delete" method="post">
     <button>Eliminar pecera</button>
   </form>
+
+<br>
+<a href="/myfish/{{bowlParams._id}}/create"><button>Añade nuevo pez</button></a>
 
 </div>
