@@ -16,6 +16,9 @@
       {{#if this.isUserOnline}}
         <a href="/profile/main">Mi perfil</a>
         <a href="/auth/logout">Cerrar sesión</a>
+        {{#if this.isAdminActive}}
+        <a href="/profile/admin">Panel de Administrador</a>
+        {{/if}}
       {{else}}
         <a href="/auth/signup">Registro</a>
         <a href="/auth/login">Acceder</a>
@@ -26,7 +29,6 @@
 
     {{{body}}}
 
-    <script src="../utils/try.js"></script>
 
     <script src="/js/script.js"></script>
   </body>

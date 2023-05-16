@@ -24,7 +24,12 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId, 
         ref: "Fish"
       }
-    ]
+    ],
+    role: {
+      type: String,
+      enum: ["user", "admin"], // los unicos posibles valores
+      default: "user"
+    }
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`    

@@ -8,7 +8,7 @@ const {
   emailValidation,
 } = require("../utils/verifications.js");
 
-const { isLogged } = require("../middlewares/auth.middlewares.js");
+const { isLogged, isAdmin } = require("../middlewares/auth.middlewares.js");
 
 // GET "/profile/main" => renderiza la vista principal del perfil
 
@@ -120,5 +120,9 @@ router.post("/edit", isLogged, async (req, res, next) => {
     next(err);
   }
 });
+
+router.get("/admin", isLogged, isAdmin, (req,res,next) => {
+  res.render("profile/admin.hbs")
+})
 
 module.exports = router;

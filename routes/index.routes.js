@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const {isOnline} = require("../middlewares/auth.middlewares.js")
+const {isOnline, isAdminOnline} = require("../middlewares/auth.middlewares.js")
 router.use(isOnline);
+router.use(isAdminOnline)
 
 /* GET home page */
 router.get("/", (req, res, next) => {
