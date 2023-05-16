@@ -1,12 +1,12 @@
 <div>
+  <h1>Página web principal</h1>
 
-    <h1>Página web principal</h1>
+  <form action="/search/results" method="post">
+    <input type="text" name="name" placeholder="...Busca un pez aqui">
+    <button type="submit" value="search">Buscar</button>
 
-    <form action="" method="post">
-
-        <input type="text" placeholder="...Busca un pez">
-        <button>Buscar</button>
-
-    </form>
-
+    {{#if errorMessage}}
+        <p style="color: crimson;">{{errorMessage}}</p>
+    {{/if}}
+  </form>
 </div>

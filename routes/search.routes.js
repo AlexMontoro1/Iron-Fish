@@ -15,8 +15,6 @@ router.get("/catalog", async (req, res, next) => {
   try {
     const fishParams = await Fish.find();
 
-    //.select({name: 1})
-
     fishParams.forEach((eachFish) => {
       eachFish.name = capitalize(eachFish.name);
     });
@@ -42,6 +40,22 @@ router.get("/:fishId/details", async (req,res,next)=> {
     }
 })
 
+router.post("/results", async (req, res, next) => {
+  try {
+    const name = req.body.name;
+    const fish = await Fish.findOne({name}).exec();
+
+    if (fish !== null) {
+      return res.redirect(`/search/${fish._id}/details`);
+    } else {
+      res.render("search/home.hbs", {
+        errorMessage: "No se ha encontrado ningún pez.",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+});
 
 
 module.exports = router;
