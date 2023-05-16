@@ -48,8 +48,17 @@ router.post("/:fishId/main", isLogged ,async (req,res,next)=> {
   }
 })
 
-router.get("/edit", isLogged, (req, res, next) => {
-  res.render("profile/edit.hbs");
+router.get("/edit", isLogged, async (req, res, next) => {
+  const userId = req.session.activeUser._id
+  try {
+    const userParams = await User.findById(userId)
+    res.render("profile/edit.hbs", {
+      userParams
+    });
+  } catch (err) {
+    next(err)
+  }
+  
 });
 
 router.post("/edit", isLogged, async (req, res, next) => {
