@@ -24,13 +24,13 @@ router.get("/create", isLogged, (req, res, next) => {
 });
 
 router.post("/create", isLogged, async (req, res, next) => {
-  const { name, capacity, water, isClosed } = req.body;
+  const { name, capacity, water, isClosed, owner } = req.body;
   try {
     await Bowl.create({
       name,
       capacity,
       water,
-      isClosed,
+      isClosed,     
     });
     //console.log(req.body)
     res.redirect("/bowl/main");
@@ -41,8 +41,8 @@ router.post("/create", isLogged, async (req, res, next) => {
 
 router.get("/:bowlId/details", isLogged, async (req, res, next) => {
   try {
-    const bowlParams = await Bowl.findById(req.params.bowlId);
-    //console.log(bowlParams)
+    const bowlParams = await Bowl.findById(req.params.bowlId).populate("owner", "username");
+    console.log(bowlParams)
     res.render("bowl/details.hbs", {
       bowlParams,
     });

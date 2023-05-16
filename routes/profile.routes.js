@@ -23,7 +23,6 @@ router.get("/main", isLogged, async (req, res, next) => {
     res.render("profile/main.hbs", {
       userParams,
       fishName,
-
     });
   } catch (err) {
     next(err);

@@ -9,19 +9,18 @@
     <br />
     <label for="capacity">Capacidad (Litros)</label>
     <input type="number" name="capacity" min="1" value="{{capacity}}"/>
-    <br />
+    <br />    
     <label for="water">Tipo de agua</label>
     <select id="waterId" name="water">
-      <option value="tropical">Tropical</option>
-      <option value="salada">Salada</option>
-      <option value="fria">Fria</option>
+      <option value="tropical" {{#if (eq water "tropical")}}selected{{/if}}>Tropical</option>
+        <option value="salada" {{#if (eq water "salada")}}selected{{/if}}>Salada</option>
+        <option value="fria" {{#if (eq water "fria")}}selected{{/if}}>Fria</option>    
     </select>
-
     <br />
     <label for="isClosed">Tiene tapa:</label>
     <select id="is-closed" name="isClosed">
-      <option value="Si">Si</option>
-      <option value="No">No</option>
+      <option value="Si" {{#if (eq isClosed "Si")}}selected{{/if}}>Si</option>
+      <option value="No" {{#if (eq isClosed "No")}}selected{{/if}}>No</option>    
     </select>
     {{/with}}
     <br />
