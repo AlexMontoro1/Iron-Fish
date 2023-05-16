@@ -68,20 +68,9 @@ router.get("/login", (req, res, next) => {
 router.post("/login", async (req, res, next) => {
   //console.log(req.body);
   const { email, password } = req.body;
-  if (email === "" && password === "") {
+  if (!email || !password) {
     res.render("auth/login.hbs", {
-      errorMessage:
-        "El correo electronico y la contraseña son obligatorios para acceder.",
-    });
-    return;
-  } else if (email === "") {
-    res.render("auth/login.hbs", {
-      errorMessage: "El correo electrónico es obligatorio para acceder.",
-    });
-    return;
-  } else if (password === "") {
-    res.render("auth/login.hbs", {
-      errorMessage: "La contraseña es obligatoria para acceder.",
+      errorMessage: "El correo electrónico y la contraseña son obligatorios para acceder.",
     });
     return;
   }
