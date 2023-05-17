@@ -54,17 +54,23 @@ router.post("/:myfishId/delete", isLogged, async (req,res,next)=> {
 router.get("/:myfishId/edit", isLogged, async (req,res,next)=> {
   try {
     const myFishParams = await MyFish.findById(req.params.myfishId).populate("fish")
-   //console.log(myFishParams);
+   
     const allFish = await Fish.find();
     const allFishClone = JSON.parse(JSON.stringify(allFish))
     allFishClone.forEach((eachFish)=> {
-      eachFish.newProperty = "patata"
+      if(myFishParams.fish.name === eachFish.name){
+        eachFish.newProperty = true
+      }else{
+        eachFish.newProperty = false
+      }
     })
+    //console.log(myFishParams);
     console.log(allFishClone);
     //console.log(allFish);
     res.render("myfish/edit.hbs", {
       myFishParams,
-      allFish
+      allFish,
+      allFishClone
     })
   } catch (err) {
     next(err)

@@ -28,11 +28,21 @@ router.get("/catalog", async (req, res, next) => {
 });
 
 router.get("/:fishId/details", async (req, res, next) => {
+  const userId = req.session.activeUser._id;
   console.log(req.params.fishId);
+
   try {
+    const userParams = await User.findById(userId)
     const fishParams = await Fish.findById(req.params.fishId);
+    let deleteButton = false;
+    userParams.wantedFish.forEach((eachWanted)=> {
+      if(fishParams._id.equals(eachWanted._id)){
+        deleteButton = true
+      }
+    })
     res.render("search/details.hbs", {
       fishParams,
+      deleteButton
     });
     //console.log(fishParams);
   } catch (err) {

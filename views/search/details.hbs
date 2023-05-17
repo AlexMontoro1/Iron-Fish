@@ -11,8 +11,12 @@
      {{#if this.isUserOnline}}
      <form action="/profile/{{fishParams._id}}/main" method="post">
         <button>Añadir a mi lista</button>
-        <p style="color: rgb(20, 23, 220);">{{req.session.message}}</p>
      </form>
+     {{#if deleteButton}}
+     <form action="/profile/{{fishParams._id}}/main" method="post">
+      <button>Eliminar de la lista</button>
+     </form>
+   {{/if}}
      
      <button>Añadir a mi pecera</button>
      {{/if}}
