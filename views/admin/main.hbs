@@ -15,13 +15,13 @@
         </select>
         <button>Eliminar</button>
     </form>
-    <form action="/admin/editFish" method="post">
+    <form>
     <label for="pezEditado">Editar pez de la base de datos:</label>
         <select id="pezEditado" name="pezEditado">
             {{#each fishName}}
             <option value="{{_id}}">{{name}}</option>
             {{/each}}
         </select>
-        <button>Editar</button>
+        <a href="/admin/{{fishName._id}}/editFish"><button>Editar</button></a>
     </form>
 </div>
