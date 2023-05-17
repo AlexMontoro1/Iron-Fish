@@ -8,7 +8,7 @@ const {
   emailValidation,
 } = require("../utils/verifications.js");
 
-const { isLogged, isAdmin } = require("../middlewares/auth.middlewares.js");
+const { isLogged } = require("../middlewares/auth.middlewares.js");
 
 // GET "/profile/main" => renderiza la vista principal del perfil
 
@@ -33,14 +33,20 @@ router.post("/:fishId/main", isLogged ,async (req,res,next)=> {
   try {
   const userId = req.session.activeUser._id
    const fishId = await Fish.findById(req.params.fishId)
-   console.log(fishId.name);
-   await User.findByIdAndUpdate(userId, {
-    $addToSet: {
-      wantedFish: fishId
-    }
-   }, {new: true})
-   req.session.message = "¡El pez se ha añadido a tu lista correctamente!";
-   res.redirect("back")
+   //console.log(fishId.name);
+   if(
+    await User.findByIdAndUpdate(userId, {
+      $addToSet: {
+        wantedFish: fishId
+      }
+     }, {new: true})
+   ){
+    req.session.message = "¡El pez se ha añadido a tu lista correctamente!";
+    console.log(req.session.message);
+    res.redirect("back")
+   }
+   
+   
    
   } catch (err) {
     next(err)
@@ -121,8 +127,6 @@ router.post("/edit", isLogged, async (req, res, next) => {
   }
 });
 
-router.get("/admin", isLogged, isAdmin, (req,res,next) => {
-  res.render("profile/admin.hbs")
-})
+
 
 module.exports = router;

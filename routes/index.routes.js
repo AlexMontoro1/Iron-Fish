@@ -25,5 +25,8 @@ router.use("/bowl", bowlRouter)
 const myfishRouter = require("./myfish.routes.js")
 router.use("/myfish", myfishRouter)
 
+const adminRouter = require("./admin.routes.js")
+router.use("/admin", adminRouter)
+
 
 module.exports = router;

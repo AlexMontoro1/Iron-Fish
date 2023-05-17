@@ -1,0 +1,27 @@
+<div>
+    <h3>Panel de Administrador</h3>
+    <button>Eliminar cuenta</button>
+    <button>Eliminar todas las cuentas</button>
+    <button>Editar cuenta</button>
+    <a href="/admin/createFish">
+    <button>Crear nuevo pez en la base de datos</button>
+    </a>
+    <form action="/admin/deleteFish" method="post">
+    <label for="pezEliminado">Eliminar pez de la base de datos:</label>
+        <select id="pezEliminado" name="pezEliminado">
+            {{#each fishName}}
+            <option value="{{_id}}">{{name}}</option>
+            {{/each}}
+        </select>
+        <button>Eliminar</button>
+    </form>
+    <form action="/admin/editFish" method="post">
+    <label for="pezEditado">Editar pez de la base de datos:</label>
+        <select id="pezEditado" name="pezEditado">
+            {{#each fishName}}
+            <option value="{{_id}}">{{name}}</option>
+            {{/each}}
+        </select>
+        <button>Editar</button>
+    </form>
+</div>
