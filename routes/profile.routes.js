@@ -78,6 +78,26 @@ router.post("/:fishId/main", isLogged, async (req, res, next) => {
   }
 });
 
+router.post("/:fishId/delete", isLogged, async (req, res, next) => {
+  try {
+    const userId = req.session.activeUser._id;
+    const fishId = req.params.fishId;
+    //console.log(fishId.name);
+    console.log(fishId);
+   if( await User.findByIdAndUpdate(userId, {
+      $pull: {
+        wantedFish: fishId,
+      },
+    })) {
+      res.redirect("back");
+    }
+
+    
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get("/edit", isLogged, async (req, res, next) => {
   const userId = req.session.activeUser._id;
   try {

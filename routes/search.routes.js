@@ -5,6 +5,8 @@ const capitalize = require("../utils/capitalize.js");
 const Fish = require("../models/Fish.model.js");
 const User = require("../models/User.model.js");
 
+const { isOnline } = require("../middlewares/auth.middlewares.js");
+
 // GET "/" => renderiza la pagina principal INICIO
 
 router.get("/", (req, res, next) => {
@@ -27,23 +29,31 @@ router.get("/catalog", async (req, res, next) => {
   }
 });
 
-router.get("/:fishId/details", async (req, res, next) => {
-  const userId = req.session.activeUser._id;
-  console.log(req.params.fishId);
+router.get("/:fishId/details", isOnline, async (req, res, next) => {
+  //console.log(req.params.fishId);
 
   try {
-    const userParams = await User.findById(userId)
-    const fishParams = await Fish.findById(req.params.fishId);
     let deleteButton = false;
-    userParams.wantedFish.forEach((eachWanted)=> {
-      if(fishParams._id.equals(eachWanted._id)){
-        deleteButton = true
-      }
-    })
-    res.render("search/details.hbs", {
-      fishParams,
-      deleteButton
-    });
+    const fishParams = await Fish.findById(req.params.fishId);
+    if (req.session.activeUser !== undefined) {
+      const userId = req.session.activeUser._id;
+      const userParams = await User.findById(userId);
+
+      userParams.wantedFish.forEach((eachWanted) => {
+        if (fishParams._id.equals(eachWanted._id)) {
+          deleteButton = true;
+        }
+      });
+      res.render("search/details.hbs", {
+        fishParams,
+        deleteButton,
+      });
+    } else {
+      res.render("search/details.hbs", {
+        fishParams,
+      });
+    }
+
     //console.log(fishParams);
   } catch (err) {
     next(err);

@@ -13,11 +13,9 @@
         <button>Añadir a mi lista</button>
      </form>
      {{#if deleteButton}}
-     <form action="/profile/{{fishParams._id}}/main" method="post">
+     <form action="/profile/{{fishParams._id}}/delete" method="post">
       <button>Eliminar de la lista</button>
      </form>
    {{/if}}
-     
-     <button>Añadir a mi pecera</button>
      {{/if}}
 </div>
