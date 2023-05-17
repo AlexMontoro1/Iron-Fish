@@ -51,7 +51,7 @@ router.post("/deleteFish", isLogged, isAdmin, async (req,res,next)=> {
     }
 })
 
-router.get("/editFish", isLogged, isAdmin, async (req,res,next)=> {
+router.get("/:fishId/editFish", isLogged, isAdmin, async (req,res,next)=> {
     res.render("admin/editFish.hbs")
 })
 
