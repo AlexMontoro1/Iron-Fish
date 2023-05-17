@@ -27,35 +27,51 @@ router.get("/catalog", async (req, res, next) => {
   }
 });
 
-router.get("/:fishId/details", async (req,res,next)=> {
-    console.log(req.params.fishId);
-    try {
-       const fishParams = await Fish.findById(req.params.fishId)
-       res.render("search/details.hbs",{
-        fishParams
-       })
-       //console.log(fishParams);
-    } catch (err) {
-        next(err)
-    }
-})
+router.get("/:fishId/details", async (req, res, next) => {
+  console.log(req.params.fishId);
+  try {
+    const fishParams = await Fish.findById(req.params.fishId);
+    res.render("search/details.hbs", {
+      fishParams,
+    });
+    //console.log(fishParams);
+  } catch (err) {
+    next(err);
+  }
+});
 
 router.post("/results", async (req, res, next) => {
   try {
-    const name = req.body.name;
-    const fish = await Fish.findOne({name}).exec();
+    const { NameType, aggr, type } = req.body;
+    const filter = req.body.filter;
+    let query = {};
 
-    if (fish !== null) {
-      return res.redirect(`/search/${fish._id}/details`);
+    switch (filter) {
+      case "NameType":
+        query.$or = [{ name: NameType }, { type: NameType }];
+        break;
+      case "aggr":
+        if (aggr >= 0 && aggr <= 5) {
+          query.aggr = aggr;
+        }
+        break;
+      default:
+        break;
+    }
+
+    const fishList = await Fish.find(query).exec();
+
+    if (fishList.length > 0) {
+      res.render("search/results.hbs", { fishList });
     } else {
       res.render("search/home.hbs", {
-        errorMessage: "No se ha encontrado ningún pez.",
+        errorMessage:
+          "No se ha encontrado ningún pez con esas caracteristicas.",
       });
     }
   } catch (error) {
     next(error);
   }
 });
-
 
 module.exports = router;
