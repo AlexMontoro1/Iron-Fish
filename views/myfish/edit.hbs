@@ -10,8 +10,12 @@
     <br />
     <label for="fish">Clase de pez</label>
         <select id="tipo-pez" name="fish">
-            {{#each allFish}}
-            <option value="{{this._id}}" {{#eq myFishParams.fish._id _id}}selected{{/eq}}>{{name}}</option>
+            {{#each allFishClone}}
+            {{#if newProperty}}
+            <option value="{{this._id}}" selected>{{name}}</option>
+            {{else}}
+            <option value="{{this._id}}">{{name}}</option>
+            {{/if}}
             {{/each}}
         </select>
     <br />
