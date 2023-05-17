@@ -2,11 +2,25 @@
   <h1>Página web principal</h1>
 
   <form action="/search/results" method="post">
-    <input type="text" name="name" placeholder="...Busca un pez aqui">
+    <input type="text" name="NameType" placeholder="Nombre o tipo de pez" />
+    <input
+      type="number"
+      style="width: 100px"
+      name="aggr"
+      min="0"
+      max="5"
+      placeholder="Agresividad"
+    />
+
+    <select name="filter">
+      <option value="NameType">Busca por nombre o tipo</option>
+      <option value="aggr">Agresividad</option>
+    </select>
+
     <button type="submit" value="search">Buscar</button>
 
     {{#if errorMessage}}
-        <p style="color: crimson;">{{errorMessage}}</p>
+      <p style="color: crimson;">{{errorMessage}}</p>
     {{/if}}
   </form>
 </div>
