@@ -3,7 +3,10 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/User.model.js");
 const Fish = require("../models/Fish.model.js");
-const { passValidation, emailValidation} = require("../utils/verifications.js");
+const {
+  passValidation,
+  emailValidation,
+} = require("../utils/verifications.js");
 const { isLogged } = require("../middlewares/auth.middlewares.js");
 
 // GET "/profile/main" => renderiza la vista principal del perfil
@@ -13,17 +16,16 @@ router.get("/main", isLogged, async (req, res, next) => {
     //console.log(req.session.activeUser);
     const userId = req.session.activeUser._id;
     //console.log(userId);
-    const userParams = await User.findById(userId).populate(
-      "wantedFish",
-      "name"
-    ).populate("favFish", "name");
-    
+    const userParams = await User.findById(userId)
+      .populate("wantedFish", "name")
+      .populate("favFish", "name");
+
     const fishName = await Fish.find();
     //console.log(userParams);
     res.render("profile/main.hbs", {
       userParams,
       fishName,
-    }); 
+    });
   } catch (err) {
     next(err);
   }
@@ -33,7 +35,6 @@ router.post("/main", isLogged, async (req, res, next) => {
   try {
     const userId = req.session.activeUser._id;
     const fishToSave = req.body.favFish;
-    
 
     await User.findByIdAndUpdate(
       userId,
@@ -44,7 +45,7 @@ router.post("/main", isLogged, async (req, res, next) => {
       },
       { new: true }
     ); //console.log(favFish)
-    res.redirect("back")
+    res.redirect("back");
   } catch (err) {
     next(err);
   }
@@ -68,6 +69,26 @@ router.post("/:fishId/main", isLogged, async (req, res, next) => {
     ) {
       res.redirect("back");
     }
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/:fishId/delete", isLogged, async (req, res, next) => {
+  try {
+    const userId = req.session.activeUser._id;
+    const fishId = req.params.fishId;
+    //console.log(fishId.name);
+    console.log(fishId);
+   if( await User.findByIdAndUpdate(userId, {
+      $pull: {
+        wantedFish: fishId,
+      },
+    })) {
+      res.redirect("back");
+    }
+
+    
   } catch (err) {
     next(err);
   }

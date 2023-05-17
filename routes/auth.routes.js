@@ -18,19 +18,22 @@ router.post("/signup", async (req, res, next) => {
   const { username, email, password } = req.body;
 
   //Validacion del correo
-  if (emailValidation(email).valid === false) {
-    return res.render("auth/signup.hbs", {
-      errorMessage: emailValidation(email).errorMessage,
-    });
-  }
-  //Validacion de contraseña
-  if (passValidation(password).valid === false) {
-    return res.render("auth/signup.hbs", {
-      errorMessage: passValidation(password).errorMessage,
-    });
-  }
+  
 
   try {
+    const emailValid = await emailValidation(email);
+    const passValid = await passValidation(password);
+    if (emailValid.valid === false) {
+      return res.render("auth/signup.hbs", {
+        errorMessage: emailValid.errorMessage,
+      });
+    }
+    //Validacion de contraseña
+    if (passValid.valid === false) {
+      return res.render("auth/signup.hbs", {
+        errorMessage: passValid.errorMessage,
+      });
+    }
     // Comprobacion de si existen los mismos usuarios o mails ya registrados
     const foundUsername = await User.findOne({ username });
     const foundMail = await User.findOne({ email });

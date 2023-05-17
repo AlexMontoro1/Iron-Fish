@@ -7,7 +7,7 @@ router.use(isAdminOnline)
 
 /* GET home page */
 router.get("/", (req, res, next) => {
-  res.render("index");
+  res.render("search/home.hbs");
 });
 
 const authRouter = require("./auth.routes.js")
