@@ -1,32 +1,39 @@
 <div>
 
-    <h3>Pagina de perfil principal</h3>
+  <h3>Pagina de perfil principal</h3>
 
-    <div>
-        <p>Nombre de usuario: {{userParams.username}}</p>
-        <p>Correo electrónico: {{userParams.email}}</p>
-         <label for="pez-favorito">Pez Favorito:</label>
-        <select id="pez-favorito" name="pez-favorito">
-            {{#each fishName}}
-            <option value="{{name}}">{{name}}</option>
-            {{/each}}
-        </select>
-        <br>
-        <a href="/profile/edit">
-        <button>Editar Cuenta</button>
-        </a>
-    </div>
+  <div>
 
-    <div>
-        <p>Lista de peces deseados: {{#each userParams.wantedFish}}
-           | {{name}} |
-            {{/each}}
-        </p>
-        <a href="/search/catalog">
-        <button>Añadir Pez a mi lista</button>
-        </a>
-        <br>
-        <a href="/bowl/{{userParams._id}}/main"><button>Ver mis peceras</button></a>
-    </div>
+    <p>Nombre de usuario: {{userParams.username}}</p>
+    <p>Correo electrónico: {{userParams.email}}</p>
+    <form action="/profile/main" method="post">
+      <label for="favFish">Pez Favorito: {{userParams.favFish.name}}</label>
+      <select id="pez-favorito" name="favFish">
+        {{#each fishName}}
+          <option value="{{this._id}}">{{name}}</option>
+        {{/each}}
+      </select>
+      <button>Guardar</button>
+    </form>
+    <br />
+    <a href="/profile/edit">
+      <button>Editar Cuenta</button>
+    </a>
+  </div>
+
+  <div>
+    <p>Lista de peces deseados:
+      {{#each userParams.wantedFish}}
+        |
+        {{name}}
+        |
+      {{/each}}
+    </p>
+    <a href="/search/catalog">
+      <button>Añadir Pez a mi lista</button>
+    </a>
+    <br />
+    <a href="/bowl/{{userParams._id}}/main"><button>Ver mis peceras</button></a>
+  </div>
 
 </div>

@@ -19,6 +19,11 @@ const userSchema = new Schema(
       type: String,
       required: true
     },
+    favFish : {
+        type: Schema.Types.ObjectId, 
+        ref: "Fish",
+        unique: true,
+      },
     wantedFish : [
       {
         type: Schema.Types.ObjectId, 

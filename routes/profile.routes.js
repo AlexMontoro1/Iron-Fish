@@ -3,11 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/User.model.js");
 const Fish = require("../models/Fish.model.js");
-const {
-  passValidation,
-  emailValidation,
-} = require("../utils/verifications.js");
-
+const { passValidation, emailValidation} = require("../utils/verifications.js");
 const { isLogged } = require("../middlewares/auth.middlewares.js");
 
 // GET "/profile/main" => renderiza la vista principal del perfil
@@ -15,55 +11,78 @@ const { isLogged } = require("../middlewares/auth.middlewares.js");
 router.get("/main", isLogged, async (req, res, next) => {
   try {
     //console.log(req.session.activeUser);
-    const userId = req.session.activeUser._id
+    const userId = req.session.activeUser._id;
     //console.log(userId);
-    const userParams = await User.findById(userId).populate("wantedFish", "name");
+    const userParams = await User.findById(userId).populate(
+      "wantedFish",
+      "name"
+    ).populate("favFish", "name");
+    
     const fishName = await Fish.find();
     //console.log(userParams);
     res.render("profile/main.hbs", {
       userParams,
       fishName,
-    });
+    }); 
   } catch (err) {
     next(err);
   }
 });
 
-router.post("/:fishId/main", isLogged ,async (req,res,next)=> {
+router.post("/main", isLogged, async (req, res, next) => {
   try {
-  const userId = req.session.activeUser._id
-   const fishId = await Fish.findById(req.params.fishId)
-   //console.log(fishId.name);
-   if(
-    await User.findByIdAndUpdate(userId, {
-      $addToSet: {
-        wantedFish: fishId
-      }
-     }, {new: true})
-   ){
-    req.session.message = "¡El pez se ha añadido a tu lista correctamente!";
-    console.log(req.session.message);
+    const userId = req.session.activeUser._id;
+    const fishToSave = req.body.favFish;
+    
+
+    await User.findByIdAndUpdate(
+      userId,
+      {
+        $set: {
+          favFish: fishToSave,
+        },
+      },
+      { new: true }
+    ); //console.log(favFish)
     res.redirect("back")
-   }
-   
-   
-   
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});
+
+router.post("/:fishId/main", isLogged, async (req, res, next) => {
+  try {
+    const userId = req.session.activeUser._id;
+    const fishId = await Fish.findById(req.params.fishId);
+    //console.log(fishId.name);
+    if (
+      await User.findByIdAndUpdate(
+        userId,
+        {
+          $addToSet: {
+            wantedFish: fishId,
+          },
+        },
+        { new: true }
+      )
+    ) {
+      res.redirect("back");
+    }
+  } catch (err) {
+    next(err);
+  }
+});
 
 router.get("/edit", isLogged, async (req, res, next) => {
-  const userId = req.session.activeUser._id
+  const userId = req.session.activeUser._id;
   try {
-    const userParams = await User.findById(userId)
+    const userParams = await User.findById(userId);
     res.render("profile/edit.hbs", {
-      userParams
+      userParams,
     });
   } catch (err) {
-    next(err)
+    next(err);
   }
-  
 });
 
 router.post("/edit", isLogged, async (req, res, next) => {
@@ -88,10 +107,10 @@ router.post("/edit", isLogged, async (req, res, next) => {
         errorMessage: passValid.errorMessage,
       });
     } else {
-        //! PREGUNTAR COMO VERIFICAR SI EL USUARIO ES EL MISMO DE LA CUENTA ACTIVA, QUE NO DE EL MENSAJE DE ERROR
+      //! PREGUNTAR COMO VERIFICAR SI EL USUARIO ES EL MISMO DE LA CUENTA ACTIVA, QUE NO DE EL MENSAJE DE ERROR
       const foundUsername = await User.findOne({ username });
       const foundMail = await User.findOne({ email });
-      const userId = req.session.activeUser._id
+      const userId = req.session.activeUser._id;
       const userParams = await User.findById(userId);
       if (foundUsername !== null && foundUsername._id === userId) {
         res.render("profile/edit.hbs", {
@@ -106,14 +125,14 @@ router.post("/edit", isLogged, async (req, res, next) => {
         });
         return;
       }
-    const salt = await bcrypt.genSalt(12);
-    const encryptedPassword = await bcrypt.hash(password, salt);
+      const salt = await bcrypt.genSalt(12);
+      const encryptedPassword = await bcrypt.hash(password, salt);
       const editedUser = await User.findByIdAndUpdate(
         userId,
         {
           username,
           email,
-          password: encryptedPassword
+          password: encryptedPassword,
         },
         { new: true }
       );
@@ -126,7 +145,5 @@ router.post("/edit", isLogged, async (req, res, next) => {
     next(err);
   }
 });
-
-
 
 module.exports = router;
