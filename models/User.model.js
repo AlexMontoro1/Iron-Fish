@@ -19,10 +19,12 @@ const userSchema = new Schema(
       type: String,
       required: true
     },
+    image: {
+      type: String 
+    },
     favFish : {
         type: Schema.Types.ObjectId, 
         ref: "Fish",
-        unique: true,
       },
     wantedFish : [
       {
@@ -39,7 +41,7 @@ const userSchema = new Schema(
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`    
     timestamps: true
-  }
+  },
 );
 
 const User = model("User", userSchema);

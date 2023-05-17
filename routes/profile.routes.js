@@ -1,10 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
+const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
 const User = require("../models/User.model.js");
 const Fish = require("../models/Fish.model.js");
-const { passValidation, emailValidation} = require("../utils/verifications.js");
+const {
+  passValidation,
+  emailValidation,
+} = require("../utils/verifications.js");
 const { isLogged } = require("../middlewares/auth.middlewares.js");
+
+const upload = multer({ dest: "temp/" });
 
 // GET "/profile/main" => renderiza la vista principal del perfil
 
@@ -13,17 +20,16 @@ router.get("/main", isLogged, async (req, res, next) => {
     //console.log(req.session.activeUser);
     const userId = req.session.activeUser._id;
     //console.log(userId);
-    const userParams = await User.findById(userId).populate(
-      "wantedFish",
-      "name"
-    ).populate("favFish", "name");
-    
+    const userParams = await User.findById(userId)
+      .populate("wantedFish", "name")
+      .populate("favFish", "name");
+
     const fishName = await Fish.find();
     //console.log(userParams);
     res.render("profile/main.hbs", {
       userParams,
       fishName,
-    }); 
+    });
   } catch (err) {
     next(err);
   }
@@ -33,7 +39,6 @@ router.post("/main", isLogged, async (req, res, next) => {
   try {
     const userId = req.session.activeUser._id;
     const fishToSave = req.body.favFish;
-    
 
     await User.findByIdAndUpdate(
       userId,
@@ -44,7 +49,7 @@ router.post("/main", isLogged, async (req, res, next) => {
       },
       { new: true }
     ); //console.log(favFish)
-    res.redirect("back")
+    res.redirect("back");
   } catch (err) {
     next(err);
   }
@@ -91,7 +96,7 @@ router.post("/edit", isLogged, async (req, res, next) => {
   try {
     if (!password) {
       return res.render("profile/edit.hbs", {
-        errorMessage: "Porfavor, intruduce una contraseña",
+        errorMessage: "Porfavor, introduce una contraseña",
       });
     }
     const emailValid = await emailValidation(email);
@@ -136,6 +141,7 @@ router.post("/edit", isLogged, async (req, res, next) => {
         },
         { new: true }
       );
+
       //console.log(editedUser);
       //req.session.activeUser = editedUser;
       console.log("changed user !");

@@ -19,6 +19,9 @@ const path = require("path");
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
+// Cloudinary setup
+const cloudinary = require('cloudinary').v2
+
 // Middleware configuration
 module.exports = (app) => {
   // In development environment the app logs

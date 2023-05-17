@@ -1,7 +1,7 @@
 <div>
     <h3>Editar Cuenta</h3>
     {{#with userParams}}
-    <form action="/profile/edit" method="post">
+    <form action="/profile/edit" method="post" enctype="multipart/form-data">
         <label for="username">Nombre de Usuario</label>
         <input type="text" name="username" value="{{username}}">
         <br>
@@ -9,7 +9,7 @@
         <input type="text" name="email" value="{{email}}">
         <br>
         <label for="password">Contraseña</label>
-        <input type="password" name="password">
+        <input type="password" name="password">        
         {{/with}}
         <br>
         <button>Terminar Edición</button>
