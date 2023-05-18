@@ -40,15 +40,16 @@ router.post("/main", isLogged, uploader.single("image"), async (req, res, next) 
     const userId = req.session.activeUser._id;
     const fishToSave = req.body.favFish;
     const image = req.file;
+    const currentImage = req.body.currentImage;
+    let imageUrl = currentImage;
 
-    if (image === undefined) {
-      next("no hay imagen");
-      return;
+
+    if (image) {
+      imageUrl = image.path;
     }
-
-    const imageUrl = image.path;
+    
   
-    await User.findByIdAndUpdate(
+   await User.findByIdAndUpdate(
       userId,
       {
         $set: {

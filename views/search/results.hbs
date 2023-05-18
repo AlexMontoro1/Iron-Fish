@@ -1,12 +1,22 @@
-<div>
-
-  <h1>Resultados de tu búsqueda</h1>
-
-  {{#each fishList}}
-    <h3>{{this.name}}</h3>
-    <img src="{{this.url}}" alt="foto-pez" width="250" />
-    <p>Tipo de agua: {{this.type}}</p>
-    <p>Agresividad: {{this.aggr}}</p>
-  {{/each}}
-
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">Resultados de tu búsqueda</h1>
+    </div>
+  </div>
+  
+  <div class="row justify-content-center">
+    {{#each fishList}}
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <img src="{{this.url}}" class="card-img-top" alt="foto-pez" width="250" />
+        <div class="card-body">
+          <h3 class="card-title">{{this.name}}</h3>
+          <p class="card-text">Tipo de agua: {{this.type}}</p>
+          <p class="card-text">Agresividad: {{this.aggr}}</p>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
 </div>
