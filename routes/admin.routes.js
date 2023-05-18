@@ -8,6 +8,7 @@ const { isLogged, isAdmin } = require("../middlewares/auth.middlewares.js");
 
 router.get("/main", isLogged, isAdmin, async (req,res,next) => {
     try {
+        console.log(req.body.pezEditado);
         const fishName = await Fish.find();
         //console.log(fishName);
         res.render("admin/main.hbs", {
@@ -52,7 +53,22 @@ router.post("/deleteFish", isLogged, isAdmin, async (req,res,next)=> {
 })
 
 router.get("/:fishId/editFish", isLogged, isAdmin, async (req,res,next)=> {
-    res.render("admin/editFish.hbs")
+    try {
+        const fishParams = await Fish.findById(req.params.fishId)
+        res.render("admin/editFish.hbs", {
+            fishParams
+        })
+    } catch (err) {
+        next(err)
+    }
+    
+})
+router.post("/editFish", isLogged, isAdmin, async (req,res,next)=>{
+    try {
+        
+    } catch (err) {
+        next(err)
+    }
 })
 
 
