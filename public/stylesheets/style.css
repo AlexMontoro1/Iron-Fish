@@ -5,9 +5,8 @@ body,html{
   padding: 0;
   background-image: url("../images/fondo-web.jpg");
   background-size: cover;
-  background-repeat: repeat;
- 
-  }
+  background-repeat: repeat;  
+}
 
   .searchbar{
   margin-bottom: auto;

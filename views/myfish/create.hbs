@@ -1,23 +1,25 @@
-<div>
-
-    <h3>Formulario añadir pez</h3>
-
-    <form action="/myfish/{{bowl._id}}/create" method="post">
-
-    <label for="name">Nombre</label>
-    <input type="text" name="name" />
-    <br />
-    <label for="age">Edad</label>
-    <input type="number" name="age" min="0" />
-    <br />
-    <label for="fish">Clase de pez</label>
-        <select id="tipo-pez" name="fish">
+<div class="container d-flex justify-content-center align-items-center">
+    <div>
+        <h3 class="mt-5">Formulario añadir pez</h3>
+      <form action="/myfish/{{bowl._id}}/create" method="post">
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input type="text" name="name" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="age">Edad</label>
+          <input type="number" name="age" min="0" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="fish">Clase de pez</label>
+          <select id="tipo-pez" name="fish" class="form-control">
             {{#each allFish}}
             <option value="{{name}}">{{name}}</option>
             {{/each}}
-        </select>
-    <br />
-    <button>Crear pez</button>
-  </form>
-
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Crear pez</button>
+      </form>
+    </div>
+  </div>
 </div>

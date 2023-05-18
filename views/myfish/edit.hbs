@@ -1,25 +1,25 @@
-<div>
-    <h3>Editar Pez</h3>
+<div class="container d-flex justify-content-center align-items-center">
+  <div>
+    <h3 class="mt-5">Editar Pez</h3>
     <form action="/myfish/{{myFishParams._id}}/edit" method="post">
-
-    <label for="name">Nombre</label>
-    <input type="text" name="name" value="{{myFishParams.name}}"/>
-    <br />
-    <label for="age">Edad</label>
-    <input type="number" name="age" min="0" value="{{myFishParams.age}}"/>
-    <br />
-    <label for="fish">Clase de pez</label>
-        <select id="tipo-pez" name="fish">
-            {{#each allFishClone}}
-            {{#if newProperty}}
-            <option value="{{this._id}}" selected>{{name}}</option>
-            {{else}}
-            <option value="{{this._id}}">{{name}}</option>
-            {{/if}}
-            {{/each}}
-        </select>
-    <br />
-    <button>Editar</button>
-  </form>
+      <label for="name">Nombre</label>
+      <input type="text" name="name" value="{{myFishParams.name}}" class="form-control" />
+      <br />
+      <label for="age">Edad</label>
+      <input type="number" name="age" min="0" value="{{myFishParams.age}}" class="form-control" />
+      <br />
+      <label for="fish">Clase de pez</label>
+      <select id="tipo-pez" name="fish" class="form-control">
+        {{#each allFishClone}}
+        {{#if newProperty}}
+        <option value="{{this._id}}" selected>{{name}}</option>
+        {{else}}
+        <option value="{{this._id}}">{{name}}</option>
+        {{/if}}
+        {{/each}}
+      </select>
+      <br />
+      <button class="btn btn-primary">Editar</button>
+    </form>
+  </div>
 </div>
-

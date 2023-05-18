@@ -1,34 +1,38 @@
-<div>
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="text-center mt-5">
+    {{#with this.bowlParams}}
+      <h1>{{name}}</h1>
+      <p>Capacidad: {{capacity}}</p>
+      <p>Tipo de agua: {{water}}</p>
+      <p>Tapa? {{isClosed}}</p>
+      <p>Creador: {{owner.username}}</p>
 
-  {{#with this.bowlParams}}
+      <a href="/bowl/{{_id}}/edit" class="btn btn-primary">Editar pecera</a>
+      <br />
 
-    <h1>Pecera {{name}}</h1>
+    {{/with}}
 
-    <p>Capacidad: {{capacity}}</p>
-    <p>Tipo de agua: {{water}}</p>
-    <p>Tapa? {{isClosed}}</p>
-    <p>Creador: {{owner.username}}</p>
+    <form action="/bowl/{{this.bowlParams._id}}/delete" method="post">
+      <button class="btn btn-danger">Eliminar pecera</button>
+    </form>
 
-    <a href="/bowl/{{_id}}/edit"><button>Editar pecera</button></a>
-    <br />
+    <div class="card-group">
+      {{#each allFishes}}
+        <div class="card card-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{name}}🐟</h5>
+            <h6 class="card-subtitle mb-2">Edad: {{age}}</h6>
+            <h6 class="card-subtitle mb-2">Clase: {{fish.name}}</h6>
+            <form action="/myfish/{{_id}}/delete" method="post">
+              <button class="btn btn-danger">Eliminar</button>
+            </form>
+            <a href="/myfish/{{_id}}/edit" class="btn btn-primary">Editar</a>
+          </div>
+        </div>
+      {{/each}}
+    </div>
 
-  {{/with}}
-
-  <form action="/bowl/{{this.bowlParams._id}}/delete" method="post">
-    <button>Eliminar pecera</button>
-  </form>
-
-{{#each allFishes}}
-  <h5>{{name}}</h5>
-  <h6>Edad: {{age}}</h6>
-  <h6>Clase: {{fish.name}}</h6>
-  <form action="/myfish/{{_id}}/delete" method="post">
-    <button>Eliminar</button>
-  </form>
-  <a href="/myfish/{{_id}}/edit"><button>Editar</button></a>
-{{/each}}
-
-<br>
-<a href="/myfish/{{bowlParams._id}}/create"><button>Añade nuevo pez</button></a>
-
+    <br>
+    <a href="/myfish/{{bowlParams._id}}/create" class="btn btn-success">Añadir nuevo pez</a>
+  </div>
 </div>

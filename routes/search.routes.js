@@ -34,10 +34,12 @@ router.get("/:fishId/details", isOnline, async (req, res, next) => {
   //console.log(req.params.fishId);
 
   try {
-    
     let deleteButton = false;
     const fishParams = await Fish.findById(req.params.fishId);
-    const allComments = await Comment.find({fish: fishParams._id}).populate("author", "username")
+    const allComments = await Comment.find({ fish: fishParams._id }).populate(
+      "author",
+      "username"
+    );
     if (req.session.activeUser !== undefined) {
       const userId = req.session.activeUser._id;
       const userParams = await User.findById(userId);
@@ -50,7 +52,7 @@ router.get("/:fishId/details", isOnline, async (req, res, next) => {
       res.render("search/details.hbs", {
         fishParams,
         deleteButton,
-        allComments
+        allComments,
       });
     } else {
       res.render("search/details.hbs", {
@@ -65,21 +67,21 @@ router.get("/:fishId/details", isOnline, async (req, res, next) => {
 });
 
 router.post("/:fishId/comment", isOnline, async (req, res, next) => {
-  const { content } = req.body
+  const { content } = req.body;
   const userId = req.session.activeUser._id;
   try {
-    const fishParams = await Fish.findById(req.params.fishId)
+    const fishParams = await Fish.findById(req.params.fishId);
     await Comment.create({
       content,
       fish: fishParams._id,
-      author: userId
-    })
-    res.redirect("back")
-    console.log("comentario creado")
+      author: userId,
+    });
+    res.redirect("back");
+    console.log("comentario creado");
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});
 
 router.post("/results", async (req, res, next) => {
   try {
@@ -89,7 +91,10 @@ router.post("/results", async (req, res, next) => {
 
     switch (filter) {
       case "NameType":
-        query.$or = [{ name: NameType }, { type: NameType }];
+        query.$or = [
+          { name: { $regex: new RegExp(NameType, "i") } },
+          { type: { $regex: new RegExp(NameType, "i") } },
+        ];
         break;
       case "aggr":
         if (aggr >= 0 && aggr <= 5) {

@@ -1,184 +1,184 @@
 [
   {
-    "name": "guppy",
+    "name": "Guppy",
     "description": "Los guppies son los peces principiantes ideales que vienen en una gran variedad de colores con un temperamento pacífico.",
-    "type": "tropical",
+    "type": "Tropical",
     "lifeExp": "3 años",
     "aggr": 1,
     "url": "https://acuario-mania.com/wp-content/uploads/2020/04/guppies.jpg"
   },
   {
-    "name": "pez payaso",
+    "name": "Pez payaso",
     "description": "Generalmente se les conoce como los mejores peces de agua salada para principiantes, tanto por su naturaleza amistosa como por su capacidad de vivir en tanques de tan sólo 40 litros.",
-    "type": "salada",
+    "type": "Salada",
     "lifeExp": "10 años",
     "aggr": 2,
     "url": "https://acuario-mania.com/wp-content/uploads/2020/04/z-payaso.jpg"
   },
   {
-    "name": "goldfish",
+    "name": "Goldfish",
     "description": "Su origen está en Asia y está muy emparentado con las carpas, ya que los dos son ciprínidos.",
-    "type": "fria",
+    "type": "Fria",
     "lifeExp": "10 años",
     "aggr": 0,
     "url": "https://www.zooplus.es/magazine/wp-content/uploads/2021/02/Goldfish-1.jpg"
   },
   {
-    "name": "pez betta",
+    "name": "Pez betta",
     "description": "Estos agresivos e inteligentes peces son uno de los más hermosos disponibles, criados por sus largas y coloridas aletas caudales.",
-    "type": "fria, tropical",
+    "type": "Fria, Tropical",
     "lifeExp": "3-4 años",
     "aggr": 5,
     "url": "https://www.fishipedia.es/wp-content/uploads/2017/11/Betta-splendens_8087_2-725x483.jpg"
   },
   {
-    "name": "damisela",
+    "name": "Damisela",
     "description": "La variación significa que cada especie tiene sus propias necesidades, pero todas son territoriales, por lo que necesitan ser emparejadas con peces más grandes que las pongan en su lugar si se vuelven demasiado agresivas.",
-    "type": "salada",
+    "type": "Salada",
     "lifeExp": "3-5 años",
     "aggr": 4,
     "url": "https://laverdadnoticias.com/export/sites/laverdad/img/2019/04/03/pez-damisela-azul-cola-amarilla.png_1747755651.png"
   },
   {
-    "name": "pez disco",
+    "name": "Pez disco",
     "description": "El pez Disco (Symphysodon discus) es un Cíclido originario de la selva amazónica. Lleva con nosotros desde 1.993, cuando los primeros ejemplares fueron importados a Europa",
-    "type": "tropical",
+    "type": "Tropical",
     "lifeExp": "12 años",
     "aggr": 1,
     "url": "https://www.gluglupet.es/blog/el-rey-del-acuario-el-pez-disco_pic1735ni0t6.jpg"
   },
   {
-    "name": "ramirezi",
+    "name": "Ramirezi",
     "description": "El pez Ramirezi (Microgeophagus Ramirezi), pertenece a la familia de los Cíclidos sudamericanos. El pez Ramirezi es un Cíclido enano que no suele sobrepasar los 7 centímetros. Una de las grandes desventajas de este pez, es que en cautividad no suele vivir más de dos o tres años, sin embargo merece la pena su cría, por su gran vistosidad en el acuario.",
-    "type": "tropical",
+    "type": "Tropical",
     "lifeExp": "2-3 años",
     "aggr": 3,
     "url": "https://www.miacuario.net/wp-content/uploads/Ramirezi-comun-German-Blue-Ram-1200x720.jpg"
   },
   {
-    "name": "pez cirujano",
+    "name": "Pez cirujano",
     "description": "Paracanthurus hepatus tiene un cuerpo comprimido lateralmente de color azul índigo y rayas negras, la superior desde el nacimiento de la aleta caudal hasta la cabeza, atravesando el ojo, y la inferior, aproximadamente hasta la altura de la aleta pectoral, que a menudo se unen dejando un círculo azul en el medio.",
-    "type": "salada",
+    "type": "Salada",
     "lifeExp": "8-20 años",
     "aggr": 2,
     "url": "https://cdn.shopify.com/s/files/1/0036/6673/9289/products/Paracanthurus_hepatus_570x570_crop_top.jpg?v=1618585926"
   },
   {
-    "name": "pez Telescopio",
+    "name": "Pez Telescopio",
     "description": "El Pez Telescopio es una mutación Goldfish. Dentro de las muchas que existen, una de las más simpáticas y comercializadas, es el Pez Telescopio, también llamado Demekin.",
-    "type": "fria",
+    "type": "Fria",
     "lifeExp": "5-10 años",
     "aggr": 0,
     "url": "https://acuario-mania.com/wp-content/uploads/2022/04/3-2.png.webp"
   },
   {
-    "name": "neon chino",
+    "name": "Neon chino",
     "description": "El Pez Neón chino, conocido como pez de la Montaña de la Nube Blanca, es un pez habitual en los acuarios de agua fría, debido a que es muy sencillo de cuidar y además posee unos llamativos y brillantes colores",
-    "type": "fria",
+    "type": "Fria",
     "lifeExp": "5-7 años",
     "aggr": 0,
     "url": "https://www.malawimascotas.com/wp-content/uploads/2019/08/neon-chino-tanichtys-albonubes.jpg"
   },
   {
-    "name": "plecostomus",
+    "name": "Plecostomus",
     "description": "El plecostostomus, llamado limpiafondos o chupa algas, entre otros muchos nombre, porque en algunos lugares de origen lo llaman vieja de agua, por su piel arrugadita, es un fantástico pez para acuario de agua fría, que nos ayudará a mantener el acuario libre de algas.",
-    "type": "fria",
+    "type": "Fria",
     "lifeExp": "10-15 años",
     "aggr": 2,
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Liposarcus_multiradiatus_01_ssj_20050321.jpg/1920px-Liposarcus_multiradiatus_01_ssj_20050321.jpg"
   },
   {
-    "name": "pez ancistrus",
+    "name": "Pez ancistrus",
     "description": "El Ancistrus dolichopterus, es también conocido como pez gato. Se trata de un pez de la familia de los Loricáridos, peces muy tranquilos y que pueden compartir espacio con muchas especies de peces diferentes, incluso con aquellas de tamaño mayor que ellos.",
-    "type": "fria",
+    "type": "Fria",
     "lifeExp": "8-10 años",
     "aggr": 1,
     "url": "https://www.nascapers.es/wp-content/uploads/2020/03/ancistrus-gold-1.jpg"
   },
   {
-    "name": "corydora",
+    "name": "Corydora",
     "description": "Las Corydoras pertenecen al género actinopterigios siluriformes de agua dulce. Otras variedades de peces han evolucionado mucho, pero las Corydoras no tanto, son peces originarios de la época del Paleoceno, siendo muy resistentes y buenos adaptándose a aguas con poco oxígeno.",
-    "type": "fria",
+    "type": "Fria",
     "lifeExp": "7-10 años",
     "aggr": 1,
     "url": "https://www.comipez.com/200/corydora-sterbai.jpg"
   },
   {
-    "name": "pez escalar",
+    "name": "Pez escalar",
     "description": "El pez Ángel o pez Escalar, Pterophyllun scalare, es un pez de la familia de los cíclidos de agua dulce y caliente. Es un pez muy original en su morfología, del que hay una gran variedad de colores. Podemos encontrar peces Ángel de color negro, dorados, koi o el color estándar, que es el plata.",
-    "type": "fria",
+    "type": "Fria",
     "lifeExp": "5-8 años",
     "aggr": 3,
     "url": "https://www.gluglupet.es/blog/pez-escalar-o-pez-angel-cuidados_pic1716ni0w800h600t6m4.jpg"
   },
   {
-    "name": "pez platy",
+    "name": "Pez platy",
     "description": "El pez Platy, Xiphophorus maculatus, es muy popular entre los aficionados a la acuariofilia al igual que otros peces de la familia de los poecilidos, igualmente muy fáciles de cuidar, como los guppys o los mollys.",
-    "type": "fria",
+    "type": "Fria",
     "lifeExp": "3-5 años",
     "aggr": 1,
     "url": "https://www.gluglupet.es/blog/el-pez-platy-o-pez-luna-es-uno-de-los-peces-mas-faciles-de-cuidar_pic1388ni3w419h230t6m0.jpg"
   },
   {
-    "name": "tetra neon",
+    "name": "Tetra neon",
     "description": "El pez Neón, tetra Neón o Neón Innesi, es un pez de agua cálida y dulce de la familia de los carácidos, están emparentados con las famosas pirañas, y con el también conocido Tetra Cardenal o neón Cardenal.",
-    "type": "tropical",
+    "type": "Tropical",
     "lifeExp": "5-7 años",
     "aggr": 0,
     "url": "https://www.zooplus.es/magazine/wp-content/uploads/2021/01/Neones.jpg"
   },
   {
-    "name": "gobio arcoiris",
+    "name": "Gobio arcoiris",
     "description": "El Gobio arcoíris, Sthiphodon ornatus, es un verdadero guerrero antialgas, al menos es así como es reconocido entre los acuaristas aficionados.",
-    "type": "tropical",
+    "type": "Tropical",
     "lifeExp": "2-3 años",
     "aggr": 2,
     "url": "https://www.plantas-acuario.es/wp-content/uploads/2021/01/ficha-del-gobio-arcoiris.jpg"
   },
   {
-    "name": "gamba red cherry",
+    "name": "Gamba red cherry",
     "description": "Una de las gambas más comunes en los acuarios y gambarios, por su color rojizo y su facilidad de mantenimiento. La mejor para principiantes, crían con facilidad si tienen buenas condiciones de agua.",
-    "type": "tropical",
+    "type": "Tropical",
     "lifeExp": "1.5 años",
     "aggr": 0,
     "url": "https://www.malawimascotas.com/wp-content/uploads/2019/08/1-Cherry-roja.jpg"
   },
   {
-    "name": "caracol zebra",
+    "name": "Caracol zebra",
     "description": "El Caracol cebra o Neritina natalensis, también llamado caracol tigre, es un molusco gaterópodo adecuado para acuarios de agua dulce o incluso algo salobre.",
-    "type": "tropical",
+    "type": "Tropical",
     "lifeExp": "1-2 años",
     "aggr": 0,
     "url": "https://myshrimphouse.com/wp-content/uploads/2022/07/Neritina-Natalensis-1.jpg"
   },
   {
-    "name": "pez lija",
+    "name": "Pez lija",
     "description": "El Acrichthys tomentosus que suele ser mantenido en las instalaciones de arrecife como control biológico de plagas de anémonas del género aiptasia y majano. Simula a una hoja sin forma homogénea.",
-    "type": "salada",
+    "type": "Salada",
     "lifeExp": "6-8 años",
     "aggr": 1,
     "url": "https://www.coralsalvaje.com/wp-content/uploads/2018/06/tomentosus.jpg"
   },
   {
-    "name": "pez angel emperador",
+    "name": "Pez angel emperador",
     "description": "El pez angel emperador necesita de un propietario experimentado en acuarios de agua salada aunque sin duda es uno de los ejemplares más hermosos y codiciados. No suelen alcanzar los 30 centímetros.",
-    "type": "salada",
+    "type": "Salada",
     "lifeExp": "8-10 años",
     "aggr": 1,
     "url": "https://entuacuario.com/wp-content/uploads/2022/02/Pez-angel-emperador.jpg"
   },
   {
-    "name": "anemona gigantea",
+    "name": "Anemona gigantea",
     "description": "Es de las denominadas hospedantes, que realizan simbiosis con otros animales, en su caso con peces cardenal (género Apogon), los cuales inhiben la liberación de las células urticantes que poseen sus tentáculos estableciendo una relación de convivencia.",
-    "type": "salada",
+    "type": "Salada",
     "lifeExp": "10-20 años",
     "aggr": 0,
     "url": "https://upload.wikimedia.org/wikipedia/commons/1/19/Condylactis_gigantea_%28Giant_Anemone%29_red_base.jpg"
   },
   {
-    "name": "cangrejo ermitaño",
+    "name": "Cangrejo ermitaño",
     "description": "El Calcinus tubularis es un artrópodo crustáceo de la familia de los Diogenidae. Es ermitaño, pues se protege dentro de conchas o de tubos calcáreos de poliquetos.",
-    "type": "salada",
+    "type": "Salada",
     "lifeExp": "15-20 años",
     "aggr": 1,
     "url": "https://media.istockphoto.com/id/453933699/es/foto/cangrejo-ermita%C3%B1o-bunter-einsiedler-calcinus-tubularis.jpg?b=1&s=170667a&w=0&k=20&c=TebcKINd5L6lmXfPUFnG6QKfj5O8n_gURmzGnFGCOKo="
