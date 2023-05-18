@@ -1,7 +1,7 @@
 <div>
     <h3>Editar Cuenta</h3>
     {{#with userParams}}
-    <form action="/profile/edit" method="post" enctype="multipart/form-data">
+    <form action="/profile/edit" method="post">        
         <label for="username">Nombre de Usuario</label>
         <input type="text" name="username" value="{{username}}">
         <br>

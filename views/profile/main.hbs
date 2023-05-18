@@ -3,6 +3,13 @@
   <h3>Pagina de perfil principal</h3>
 
   <div>    
+    <img src="{{userParams.image}}" alt="Imagen de Perfil" width="200px">
+    <form action="/profile/main" method="post" enctype="multipart/form-data">
+      <label for="image">Imagen de perfil</label>
+      <input type="file" name="image">
+      <br>
+      <button>Subir imagen</button>
+    </form>
     <p>Nombre de usuario: {{userParams.username}}</p>
     <p>Correo electrónico: {{userParams.email}}</p>
     <form action="/profile/main" method="post">

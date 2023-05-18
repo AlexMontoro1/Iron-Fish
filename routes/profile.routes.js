@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
+const multer = require("multer");
+
 const User = require("../models/User.model.js");
 const Fish = require("../models/Fish.model.js");
 const {
@@ -11,7 +12,30 @@ const {
 } = require("../utils/verifications.js");
 const { isLogged } = require("../middlewares/auth.middlewares.js");
 
-const upload = multer({ dest: "temp/" });
+require('dotenv').config();
+
+//! DATOS DE CLOUDINARY A METER EN .ENV
+cloudinary.config({
+  cloud_name: "dglcdsznp",
+  api_key: "511548973233353",
+  api_secret: "oLFc6ur2EJELGWBJvqWVwuRc1bs",
+});
+
+// Configuración de multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "temp/"); // Carpeta donde se guardarán los archivos subidos
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    const fileExtension = file.originalname.split(".").pop();
+    cb(null, uniqueSuffix + "." + fileExtension);
+  },
+});
+
+const upload = multer({ storage: storage });
+
+
 
 // GET "/profile/main" => renderiza la vista principal del perfil
 
@@ -35,16 +59,24 @@ router.get("/main", isLogged, async (req, res, next) => {
   }
 });
 
-router.post("/main", isLogged, async (req, res, next) => {
+router.post("/main", isLogged, upload.single("image"), async (req, res, next) => {
   try {
     const userId = req.session.activeUser._id;
     const fishToSave = req.body.favFish;
+    const image = req.file;
+
+    let imageURL;
+    if (image) {
+      const result = await cloudinary.uploader.upload(image.path);
+      imageURL = result.secure_url;
+    }
 
     await User.findByIdAndUpdate(
       userId,
       {
         $set: {
           favFish: fishToSave,
+          image: imageURL,
         },
       },
       { new: true }
@@ -84,15 +116,15 @@ router.post("/:fishId/delete", isLogged, async (req, res, next) => {
     const fishId = req.params.fishId;
     //console.log(fishId.name);
     console.log(fishId);
-   if( await User.findByIdAndUpdate(userId, {
-      $pull: {
-        wantedFish: fishId,
-      },
-    })) {
+    if (
+      await User.findByIdAndUpdate(userId, {
+        $pull: {
+          wantedFish: fishId,
+        },
+      })
+    ) {
       res.redirect("back");
     }
-
-    
   } catch (err) {
     next(err);
   }
@@ -112,6 +144,7 @@ router.get("/edit", isLogged, async (req, res, next) => {
 
 router.post("/edit", isLogged, async (req, res, next) => {
   const { username, email, password } = req.body;
+  
 
   try {
     if (!password) {
@@ -149,7 +182,8 @@ router.post("/edit", isLogged, async (req, res, next) => {
             "El correo electronico ya existe, prueba con otro correo",
         });
         return;
-      }
+      }      
+
       const salt = await bcrypt.genSalt(12);
       const encryptedPassword = await bcrypt.hash(password, salt);
       const editedUser = await User.findByIdAndUpdate(
@@ -158,6 +192,7 @@ router.post("/edit", isLogged, async (req, res, next) => {
           username,
           email,
           password: encryptedPassword,
+          image: imageURL,
         },
         { new: true }
       );

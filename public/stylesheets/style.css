@@ -1,6 +1,8 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("https://img.freepik.com/vector-gratis/fondo-acuarela-abstracta-pintada-mano_23-2148995293.jpg?w=740&t=st=1684397531~exp=1684398131~hmac=6d3b16c474cd6ff8185b873064543af7d34d3f760ad46b20f54ffa218e6160cf");
+  background-size: cover;
 }
 
 a {
