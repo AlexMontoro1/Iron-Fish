@@ -1,11 +1,12 @@
 <div>
     <h3>Editar pez de la base de datos</h3>
-    <form action="/admin/editFish" method="post">
+    {{#with fishParams}}
+    <form action="/admin/editFish/{{_id}}" method="post">
         <label for="name">Nombre</label>
-        <input type="text" name="name"> 
+        <input type="text" name="name" value="{{name}}"> 
         <br>
         <label for="description">Descripción</label>
-        <input type="text" name="description">
+        <input type="text" name="description" value="{{description}}">
         <br>
         <label for="type">Tipo de Agua</label>
         <select id="waterId" name="type">
@@ -15,16 +16,16 @@
         </select>
         <br>
         <label for="lifeExp">Esperanza de vida</label>
-        <input type="text" name="lifeExp">
+        <input type="text" name="lifeExp" value="{{lifeExp}}">
         <br>
         <label for="aggr">Agresividad</label>
-        <input type="Number" name="aggr" min="0" max="5">
+        <input type="Number" name="aggr" min="0" max="5" value="{{aggr}}">
         <br>
         <label for="url">Url de Imagen</label>
-        <input type="text" name="url">  
+        <input type="text" name="url" value="{{url}}">  
         <br>
         <button>Editar</button>
-
+    {{/with}}
 
 
 

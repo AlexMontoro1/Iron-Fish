@@ -1,27 +1,34 @@
 <div>
-    <h3>Panel de Administrador</h3>
-    <button>Eliminar cuenta</button>
-    <button>Eliminar todas las cuentas</button>
-    <button>Editar cuenta</button>
-    <a href="/admin/createFish">
+  <h3>Panel de Administrador</h3>
+  <a href="/admin/createFish">
     <button>Crear nuevo pez en la base de datos</button>
-    </a>
-    <form action="/admin/deleteFish" method="post">
+  </a>
+  <form action="/admin/deleteFish" method="post">
     <label for="pezEliminado">Eliminar pez de la base de datos:</label>
-        <select id="pezEliminado" name="pezEliminado">
-            {{#each fishName}}
-            <option value="{{_id}}">{{name}}</option>
-            {{/each}}
-        </select>
-        <button>Eliminar</button>
-    </form>
-    <form>
+    <select id="pezEliminado" name="pezEliminado">
+      {{#each fishName}}
+        <option value="{{_id}}">{{name}}</option>
+      {{/each}}
+    </select>
+    <button>Eliminar</button>
+  </form>
+  <form action="/admin/editFish" method="post">
     <label for="pezEditado">Editar pez de la base de datos:</label>
-        <select id="pezEditado" name="pezEditado">
-            {{#each fishName}}
-            <option value="{{_id}}">{{name}}</option>
-            {{/each}}
-        </select>
-        <a href="/admin/{{fishName._id}}/editFish"><button>Editar</button></a>
-    </form>
+    <select id="pezEditado" name="pezEditado">
+      {{#each fishName}}
+        <option value="{{_id}}">{{name}}</option>
+      {{/each}}
+    </select>
+    <button id="editButton" type="button">Editar</button>
+  </form>
+  
 </div>
+
+<script>
+
+  const editarButton = document.getElementById('editButton');
+  editarButton.addEventListener('click', () => { const selectedFishId =
+  document.getElementById('pezEditado').value; const editUrl =
+  `/admin/editFish/${selectedFishId}`; window.location.href = editUrl; });
+
+</script>

@@ -4,6 +4,7 @@ const router = express.Router();
 const capitalize = require("../utils/capitalize.js");
 const Fish = require("../models/Fish.model.js");
 const User = require("../models/User.model.js");
+const Comment = require("../models/Comment.model.js");
 
 const { isOnline } = require("../middlewares/auth.middlewares.js");
 
@@ -33,6 +34,7 @@ router.get("/:fishId/details", isOnline, async (req, res, next) => {
   //console.log(req.params.fishId);
 
   try {
+    const allComments = await Comment.find().populate("author", "username")
     let deleteButton = false;
     const fishParams = await Fish.findById(req.params.fishId);
     if (req.session.activeUser !== undefined) {
@@ -47,6 +49,7 @@ router.get("/:fishId/details", isOnline, async (req, res, next) => {
       res.render("search/details.hbs", {
         fishParams,
         deleteButton,
+        allComments
       });
     } else {
       res.render("search/details.hbs", {
@@ -59,6 +62,23 @@ router.get("/:fishId/details", isOnline, async (req, res, next) => {
     next(err);
   }
 });
+
+router.post("/:fishId/comment", isOnline, async (req, res, next) => {
+  const { content } = req.body
+  const userId = req.session.activeUser._id;
+  try {
+    const fishParams = await Fish.findById(req.params.fishId)
+    await Comment.create({
+      content,
+      fish: fishParams._id,
+      author: userId
+    })
+    res.redirect("back")
+    console.log("comentario creado")
+  } catch (err) {
+    next(err)
+  }
+})
 
 router.post("/results", async (req, res, next) => {
   try {

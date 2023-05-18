@@ -8,7 +8,6 @@ const { isLogged, isAdmin } = require("../middlewares/auth.middlewares.js");
 
 router.get("/main", isLogged, isAdmin, async (req,res,next) => {
     try {
-        console.log(req.body.pezEditado);
         const fishName = await Fish.find();
         //console.log(fishName);
         res.render("admin/main.hbs", {
@@ -42,7 +41,6 @@ router.post("/createFish", isLogged, isAdmin, async (req,res,next)=> {
 })
 
 router.post("/deleteFish", isLogged, isAdmin, async (req,res,next)=> {
-    console.log(req.body);
     try {
         await Fish.findByIdAndRemove(req.body.pezEliminado)
         res.redirect("back")
@@ -52,20 +50,31 @@ router.post("/deleteFish", isLogged, isAdmin, async (req,res,next)=> {
     }
 })
 
-router.get("/:fishId/editFish", isLogged, isAdmin, async (req,res,next)=> {
+router.get("/editFish/:fishId", isLogged, isAdmin, async (req,res,next)=> {
     try {
-        const fishParams = await Fish.findById(req.params.fishId)
-        res.render("admin/editFish.hbs", {
-            fishParams
-        })
+       const fishParams = await Fish.findById(req.params.fishId) 
+       console.log(fishParams);
+       res.render("admin/editFish.hbs",{
+        fishParams
+       })
     } catch (err) {
         next(err)
     }
-    
+   
 })
-router.post("/editFish", isLogged, isAdmin, async (req,res,next)=>{
+
+router.post("/editFish/:fishId", isLogged, isAdmin, async (req,res,next)=>{ 
+    const { name, description , type, lifeExp, aggr, url } = req.body
     try {
-        
+        await Fish.findByIdAndUpdate(req.params.fishId, {
+            name,
+            description,
+            type,
+            lifeExp,
+            aggr,
+            url
+        })
+        res.redirect("/admin/main")
     } catch (err) {
         next(err)
     }

@@ -17,5 +17,20 @@
       <button>Eliminar de la lista</button>
      </form>
    {{/if}}
+
+    {{#each allComments}}
+    <h5>{{author.username}}</h5>
+    <h6>{{createdAt}}</h6>
+    <p>{{content}}</p>
+
+    {{/each}}
+
+
+    <form action="/search/{{fishParams._id}}/comment" method="post">
+    <input type="text" name="content">
+    <button>Añadir Comentario</button>
+    
+    </form>
+
      {{/if}}
 </div>
