@@ -1,0 +1,45 @@
+<div>
+  <div class="full-cont">
+    <form action="/search/results" method="post">
+      <div class="container">
+        <div class="d-flex">
+          <div class="searchbar">
+            <input
+              class="search_input"
+              type="text"
+              name="NameType"
+              placeholder="Nombre o tipo de pez..."
+            />
+            <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+          </div>
+          <input
+            type="number"
+            style="width: 100px"
+            name="aggr"
+            min="0"
+            max="5"
+            placeholder="Agresividad"
+          />
+
+          <select name="filter">
+            <option value="NameType">Busca por nombre o tipo</option>
+            <option value="aggr">Agresividad</option>
+          </select>
+
+          <button
+            class="btn btn-light"
+            type="submit"
+            value="search"
+          >Buscar</button>
+
+        </div>
+      </div>
+
+      {{#if errorMessage}}
+        <p style="color: crimson;">{{errorMessage}}</p>
+      {{/if}}
+
+    </form>
+  </div>
+
+</div>

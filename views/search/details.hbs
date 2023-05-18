@@ -1,0 +1,50 @@
+<div class="container text-center mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h3>Detalles del pez</h3>
+      {{#with fishParams}}
+        <img
+          src="{{url}}"
+          alt="pez"
+          class="img-fluid"
+          style="max-width: 400px;"
+        />
+        <h3>Nombre: {{name}}</h3>
+        <h4>Tipo de Agua: {{type}}</h4>
+        <h4>Esperanza de vida: {{lifeExp}}</h4>
+        <h4>Agresividad: {{aggr}}</h4>
+        <p>Descripción: {{description}}</p>
+      {{/with}}
+      {{#if this.isUserOnline}}
+        <form action="/profile/{{fishParams._id}}/main" method="post">
+          <button class="btn btn-primary">Añadir a mi lista</button>
+        </form>
+        {{#if deleteButton}}
+          <form action="/profile/{{fishParams._id}}/delete" method="post">
+            <button class="btn btn-danger">Eliminar de la lista</button>
+          </form>
+        {{/if}}
+
+        {{#each allComments}}
+          <div class="card mt-3">
+            <div class="card-body">
+              <h5>{{author.username}}</h5>
+              <h6>{{createdAt}}</h6>
+              <p>{{content}}</p>
+            </div>
+          </div>
+        {{/each}}
+
+        <form
+          action="/search/{{fishParams._id}}/comment"
+          method="post"
+          class="mt-3"
+        >
+          <input type="text" name="content" class="form-control" />
+          <button type="submit" class="btn btn-success mt-2">Añadir Comentario</button>
+        </form>
+
+      {{/if}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="text-center mt-5">
+    {{#with this.bowlParams}}
+      <h1>{{name}}</h1>
+      <p>Capacidad: <b>{{capacity}}</b></p>
+      <p>Tipo de agua: <b>{{water}}</b></p>
+      <p>Tapa? <b>{{isClosed}}</b></p>
+      <p>Creador: <b>{{owner.username}}</b></p>
+
+      <a href="/bowl/{{_id}}/edit" class="btn btn-primary">Editar pecera</a>
+
+    {{/with}}
+
+    <form action="/bowl/{{this.bowlParams._id}}/delete" method="post">
+      <button class="btn btn-danger">Eliminar pecera</button>
+    </form>
+
+    <div class="card-group">
+      {{#each allFishes}}
+        <div class="card card-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{name}}🐟</h5>
+            <h6 class="card-subtitle mb-2">Edad: {{age}}</h6>
+            <h6 class="card-subtitle mb-2">Clase: {{fish.name}}</h6>
+            <form action="/myfish/{{_id}}/delete" method="post">
+              <button class="btn btn-danger">Eliminar</button>
+            </form>
+            <a href="/myfish/{{_id}}/edit" class="btn btn-primary">Editar</a>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+
+    <a href="/myfish/{{bowlParams._id}}/create" class="btn btn-success">Añadir
+      nuevo pez</a>
+  </div>
+</div>

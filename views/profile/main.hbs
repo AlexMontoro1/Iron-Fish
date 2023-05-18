@@ -1,0 +1,48 @@
+<div class="container mt-5 text-center">
+
+  <h3>Pagina de perfil principal</h3>
+
+  <div>    
+    <img src="{{userParams.image}}" alt="Imagen de Perfil" width="200px">
+    <form action="/profile/main" method="post" enctype="multipart/form-data">
+    <div class="mb-3 col-md-6 offset-md-3">
+      <label for="image" class="form-label">Imagen de perfil</label>
+      <input type="file" name="image" class="form-control">
+    </div>
+      
+      <button class="btn btn-info">Subir imagen</button>
+    </form>
+    <p>Nombre de usuario: <b>{{userParams.username}}</b></p>
+    <p>Correo electrónico: <b>{{userParams.email}}</b></p>
+    <form action="/profile/main" method="post">
+      <label for="favFish">Pez Favorito: <b>{{userParams.favFish.name}}</b></label>
+      <select id="pez-favorito" name="favFish">
+        {{#each fishName}}
+          <option value="{{this._id}}">{{name}}</option>
+        {{/each}}
+      </select>
+      <input type="hidden" name="currentImage" value="{{userParams.image}}">
+      <button class="btn btn-info">Guardar</button>
+    </form>
+    
+    <a href="/profile/edit">
+      <button class="btn btn-info">Editar Cuenta</button>
+    </a>
+  </div>
+
+  <div>
+    <p>Lista de peces deseados:
+      {{#each userParams.wantedFish}}
+        |
+       <b>{{name}}</b> 
+        |
+      {{/each}}
+    </p>
+    <a href="/search/catalog">
+      <button class="btn btn-info">Añadir Pez a mi lista</button>
+    </a>
+    
+    <a href="/bowl/{{userParams._id}}/main"><button class="btn btn-info">Ver mis peceras</button></a>
+  </div>
+
+</div>

@@ -1,0 +1,29 @@
+<div class="container d-flex justify-content-center align-items-center">
+  <div>
+    <h1 class="mt-5">Actualiza tu pecera</h1>
+    {{#with bowlParams}}
+    <form action="/bowl/{{_id}}/edit" method="post">
+      <label for="name">Nombre</label>
+      <input type="text" name="name" value="{{name}}" class="form-control" />
+      <br />
+      <label for="capacity">Capacidad (Litros)</label>
+      <input type="number" name="capacity" min="1" value="{{capacity}}" class="form-control" />
+      <br />
+      <label for="water">Tipo de agua</label>
+      <select id="waterId" name="water" class="form-control">
+        <option value="tropical" {{#if (eq water "tropical")}}selected{{/if}}>Tropical</option>
+        <option value="salada" {{#if (eq water "salada")}}selected{{/if}}>Salada</option>
+        <option value="fria" {{#if (eq water "fria")}}selected{{/if}}>Fria</option>
+      </select>
+      <br />
+      <label for="isClosed">Tiene tapa:</label>
+      <select id="is-closed" name="isClosed" class="form-control">
+        <option value="Si" {{#if (eq isClosed "Si")}}selected{{/if}}>Si</option>
+        <option value="No" {{#if (eq isClosed "No")}}selected{{/if}}>No</option>
+      </select>
+      {{/with}}
+      <br />
+      <button class="btn btn-primary">Actualizar</button>
+    </form>
+  </div>
+</div>

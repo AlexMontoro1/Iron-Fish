@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title text-center">Lista de peceras</h1>
+          <ul class="list-group list-group-flush">
+            {{#each allBowls}}
+              <li class="list-group-item">
+                <span class="badge badge-primary">{{@index}}</span>
+                <a href="/bowl/{{_id}}/details">{{name}}</a>
+              </li>
+            {{/each}}
+          </ul>
+          <div class="text-center mt-4">
+            <a href="/bowl/{{userId}}/create" class="btn btn-primary">Crear
+              pecera</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

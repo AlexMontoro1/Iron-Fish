@@ -1,0 +1,44 @@
+<div class="container mt-5">
+  <div class="col-md-6 offset-md-3">
+    <h3>Creacion de nuevo pez en la Base de Datos</h3>
+    <form action="/admin/createFish" method="post">
+      <div class="mb-3">
+        <label class="form-label" for="name">Nombre</label>
+        <input class="form-control" type="text" name="name" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="description">Descripción</label>
+        <input class="form-control" type="text" name="description" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="type">Tipo de Agua</label>
+        <select class="form-control" id="waterId" name="type">
+          <option value="tropical">Tropical</option>
+          <option value="salada">Salada</option>
+          <option value="fria">Fria</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="lifeExp">Esperanza de vida</label>
+        <input class="form-control" type="text" name="lifeExp" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="aggr">Agresividad</label>
+        <input class="form-control" type="Number" name="aggr" min="0" max="5" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="url">Url de Imagen</label>
+        <input class="form-control" type="text" name="url" />
+      </div>
+
+      <button class="btn btn-primary">Añadir</button>
+
+    </form>
+  </div>
+
+</div>

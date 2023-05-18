@@ -9,11 +9,18 @@ require("./db");
 // https://www.npmjs.com/package/express
 const express = require("express");
 
+
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
 
 const app = express();
+
+
+hbs.registerHelper('eq', function(a, b) {
+    return a === b;
+  });
+
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
@@ -22,7 +29,7 @@ require("./config")(app);
 const capitalize = require("./utils/capitalize");
 const projectName = "Iron-Fish";
 
-app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
+app.locals.appTitle = `${capitalize(projectName)}`;
 
 // 👇 Start handling routes here
 const indexRoutes = require("./routes/index.routes");

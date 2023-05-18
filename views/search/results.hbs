@@ -1,0 +1,17 @@
+<div class="container">
+
+  <h1 class="text-center mt-5 mb-5">Resultados de tu búsqueda</h1>
+  
+ <div class="row justify-content-center">
+  {{#each fishList}}
+  <div class="col-md-4 mb-4">
+  <div class="d-flex flex-column align-items-center">
+    <h3>{{this.name}}</h3>
+    <img src="{{this.url}}" alt="foto-pez" width="200px" height="150px" />
+    <p>Tipo de agua: {{this.type}}</p>
+    <p>Agresividad: {{this.aggr}}</p>
+    </div>
+    </div>
+  {{/each}}
+</div>
+</div>
