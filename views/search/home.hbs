@@ -1,9 +1,13 @@
-<div>
-  <h1>Página web principal</h1>
-
+<div >
+<div class="full-cont">
   <form action="/search/results" method="post">
-    <input type="text" name="NameType" placeholder="Nombre o tipo de pez" />
-    <input
+  <div class="container">
+      <div class="d-flex">
+        <div class="searchbar">
+          <input class="search_input" type="text" name="NameType" placeholder="Nombre o tipo de pez..." />
+          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+        </div>
+         <input
       type="number"
       style="width: 100px"
       name="aggr"
@@ -18,9 +22,15 @@
     </select>
 
     <button type="submit" value="search">Buscar</button>
-
-    {{#if errorMessage}}
+  
+      </div>
+    </div>
+    
+   {{#if errorMessage}}
       <p style="color: crimson;">{{errorMessage}}</p>
     {{/if}}
+    
   </form>
+</div>
+  
 </div>

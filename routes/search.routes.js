@@ -34,9 +34,10 @@ router.get("/:fishId/details", isOnline, async (req, res, next) => {
   //console.log(req.params.fishId);
 
   try {
-    const allComments = await Comment.find().populate("author", "username")
+    
     let deleteButton = false;
     const fishParams = await Fish.findById(req.params.fishId);
+    const allComments = await Comment.find({fish: fishParams._id}).populate("author", "username")
     if (req.session.activeUser !== undefined) {
       const userId = req.session.activeUser._id;
       const userParams = await User.findById(userId);
