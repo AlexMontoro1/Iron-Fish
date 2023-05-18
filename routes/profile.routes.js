@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const cloudinary = require("cloudinary").v2;
-const multer = require("multer");
 
 const User = require("../models/User.model.js");
 const Fish = require("../models/Fish.model.js");
@@ -12,29 +10,7 @@ const {
 } = require("../utils/verifications.js");
 const { isLogged } = require("../middlewares/auth.middlewares.js");
 
-require('dotenv').config();
-
-//! DATOS DE CLOUDINARY A METER EN .ENV
-cloudinary.config({
-  cloud_name: "dglcdsznp",
-  api_key: "511548973233353",
-  api_secret: "oLFc6ur2EJELGWBJvqWVwuRc1bs",
-});
-
-// Configuración de multer
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "temp/"); // Carpeta donde se guardarán los archivos subidos
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    const fileExtension = file.originalname.split(".").pop();
-    cb(null, uniqueSuffix + "." + fileExtension);
-  },
-});
-
-const upload = multer({ storage: storage });
-
+const uploader = require("../middlewares/cloudinary.config.js")
 
 
 // GET "/profile/main" => renderiza la vista principal del perfil
@@ -59,24 +35,25 @@ router.get("/main", isLogged, async (req, res, next) => {
   }
 });
 
-router.post("/main", isLogged, upload.single("image"), async (req, res, next) => {
+router.post("/main", isLogged, uploader.single("image"), async (req, res, next) => {
   try {
     const userId = req.session.activeUser._id;
     const fishToSave = req.body.favFish;
     const image = req.file;
 
-    let imageURL;
-    if (image) {
-      const result = await cloudinary.uploader.upload(image.path);
-      imageURL = result.secure_url;
+    if (image === undefined) {
+      next("no hay imagen");
+      return;
     }
 
+    const imageUrl = image.path;
+  
     await User.findByIdAndUpdate(
       userId,
       {
         $set: {
           favFish: fishToSave,
-          image: imageURL,
+          image: imageUrl,
         },
       },
       { new: true }
