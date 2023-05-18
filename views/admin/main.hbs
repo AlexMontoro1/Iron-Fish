@@ -1,26 +1,35 @@
-<div>
-  <h3>Panel de Administrador</h3>
+<div class="container mt-5">
+  <div class="col-md-6 offset-md-3">
+    <h3>Panel de Administrador</h3>
   <a href="/admin/createFish">
-    <button>Crear nuevo pez en la base de datos</button>
+    <button class="btn btn-dark">Crear nuevo pez en la base de datos</button>
   </a>
   <form action="/admin/deleteFish" method="post">
-    <label for="pezEliminado">Eliminar pez de la base de datos:</label>
-    <select id="pezEliminado" name="pezEliminado">
+  <div class="mb-3">
+    <label class="form-label" for="pezEliminado">Eliminar pez de la base de datos:</label>
+    <select class="form-control" id="pezEliminado" name="pezEliminado">
       {{#each fishName}}
         <option value="{{_id}}">{{name}}</option>
       {{/each}}
     </select>
-    <button>Eliminar</button>
+  </div>
+    
+    <button class="btn btn-dark">Eliminar</button>
   </form>
   <form action="/admin/editFish" method="post">
-    <label for="pezEditado">Editar pez de la base de datos:</label>
-    <select id="pezEditado" name="pezEditado">
+  <div class="mb-3">
+    <label class="form-label" for="pezEditado">Editar pez de la base de datos:</label>
+    <select class="form-control" id="pezEditado" name="pezEditado">
       {{#each fishName}}
         <option value="{{_id}}">{{name}}</option>
       {{/each}}
     </select>
-    <button id="editButton" type="button">Editar</button>
+  </div>
+    
+    <button class="btn btn-dark" id="editButton" type="button">Editar</button>
   </form>
+  </div>
+  
   
 </div>
 

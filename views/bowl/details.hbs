@@ -2,13 +2,12 @@
   <div class="text-center mt-5">
     {{#with this.bowlParams}}
       <h1>{{name}}</h1>
-      <p>Capacidad: {{capacity}}</p>
-      <p>Tipo de agua: {{water}}</p>
-      <p>Tapa? {{isClosed}}</p>
-      <p>Creador: {{owner.username}}</p>
+      <p>Capacidad: <b>{{capacity}}</b></p>
+      <p>Tipo de agua: <b>{{water}}</b></p>
+      <p>Tapa? <b>{{isClosed}}</b></p>
+      <p>Creador: <b>{{owner.username}}</b></p>
 
       <a href="/bowl/{{_id}}/edit" class="btn btn-primary">Editar pecera</a>
-      <br />
 
     {{/with}}
 
@@ -32,7 +31,7 @@
       {{/each}}
     </div>
 
-    <br>
-    <a href="/myfish/{{bowlParams._id}}/create" class="btn btn-success">Añadir nuevo pez</a>
+    <a href="/myfish/{{bowlParams._id}}/create" class="btn btn-success">Añadir
+      nuevo pez</a>
   </div>
 </div>

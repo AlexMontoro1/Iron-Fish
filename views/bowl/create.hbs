@@ -1,29 +1,36 @@
-<div>
-
-  <h1>Crea tu pecera</h1>
+<div class="container mt-5">
+  <div class="col-md-6 offset-md-3">
+  <h1 class="mt-5">Crea tu pecera</h1>
 
   <form action="/bowl/{{userId}}/create" method="post">
 
-    <label for="name">Nombre</label>
-    <input type="text" name="name" />
-    <br />
-    <label for="capacity">Capacidad (Litros)</label>
-    <input type="number" name="capacity" min="1" />
-    <br />
-    <label for="water">Tipo de agua</label>
-    <select id="waterId" name="water">
+    <div class="mb-3">
+      <label class="form-label" for="name">Nombre</label>
+      <input class="form-control" type="text" name="name" />
+    </div>
+    
+<div class="mb-3">
+    <label class="form-label" for="capacity">Capacidad (Litros)</label>
+    <input class="form-control" type="number" name="capacity" min="1" />
+</div>
+    <div class="mb-3">
+      <label class="form-label" for="water">Tipo de agua</label>
+    <select class="form-control" id="waterId" name="water">
       <option value="tropical">Tropical</option>
       <option value="salada">Salada</option>
       <option value="fria">Fria</option>
     </select>
-
-    <br />
-    <label for="isClosed">Tiene tapa:</label>
-    <select id="is-closed" name="isClosed">
+    </div>
+    
+    <div class="mb-3">
+       <label class="form-label" for="isClosed">Tiene tapa:</label>
+    <select class="form-control" id="is-closed" name="isClosed">
       <option value="Si">Si</option>
       <option value="No">No</option>
     </select>
-    <br />
-    <button>Crear pecera</button>
+    </div>
+   
+    <button class="btn btn-primary">Crear pecera</button>
   </form>
+  </div>
 </div>
