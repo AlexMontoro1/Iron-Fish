@@ -21,7 +21,7 @@ router.get("/catalog", async (req, res, next) => {
     fishParams.forEach((eachFish) => {
       eachFish.name = capitalize(eachFish.name);
     });
-    //console.log(fishParams)
+
     res.render("search/catalog.hbs", {
       fishParams,
     });
@@ -31,8 +31,6 @@ router.get("/catalog", async (req, res, next) => {
 });
 
 router.get("/:fishId/details", isOnline, async (req, res, next) => {
-  //console.log(req.params.fishId);
-
   try {
     let deleteButton = false;
     const fishParams = await Fish.findById(req.params.fishId);
@@ -59,8 +57,6 @@ router.get("/:fishId/details", isOnline, async (req, res, next) => {
         fishParams,
       });
     }
-
-    //console.log(fishParams);
   } catch (err) {
     next(err);
   }

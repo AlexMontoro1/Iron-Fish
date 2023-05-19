@@ -17,15 +17,12 @@ const uploader = require("../middlewares/cloudinary.config.js")
 
 router.get("/main", isLogged, async (req, res, next) => {
   try {
-    //console.log(req.session.activeUser);
     const userId = req.session.activeUser._id;
-    //console.log(userId);
     const userParams = await User.findById(userId)
       .populate("wantedFish", "name")
       .populate("favFish", "name");
 
     const fishName = await Fish.find();
-    //console.log(userParams);
     res.render("profile/main.hbs", {
       userParams,
       fishName,
