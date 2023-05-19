@@ -18,7 +18,6 @@ router.post("/signup", async (req, res, next) => {
   const { username, email, password } = req.body;
 
   //Validacion del correo
-  
 
   try {
     const emailValid = await emailValidation(email);
@@ -51,13 +50,12 @@ router.post("/signup", async (req, res, next) => {
     // Encriptacion de contraseña
     const salt = await bcrypt.genSalt(12);
     const encryptedPassword = await bcrypt.hash(password, salt);
-    //console.log(encryptedPassword);
+
     await User.create({
       username,
       email,
       password: encryptedPassword,
     });
-    console.log("Created User !");
     res.redirect("/auth/login");
   } catch (error) {
     next(error);
@@ -69,11 +67,11 @@ router.get("/login", (req, res, next) => {
 });
 // Ruta para verificar que lo datos de acceso sean correcto y esten en la BD
 router.post("/login", async (req, res, next) => {
-  //console.log(req.body);
   const { email, password } = req.body;
   if (!email || !password) {
     res.render("auth/login.hbs", {
-      errorMessage: "El correo electrónico y la contraseña son obligatorios para acceder.",
+      errorMessage:
+        "El correo electrónico y la contraseña son obligatorios para acceder.",
     });
     return;
   }
@@ -87,7 +85,7 @@ router.post("/login", async (req, res, next) => {
       return;
     }
     const correctPassword = await bcrypt.compare(password, foundUser.password);
-    //console.log(correctPassword);
+
     if (correctPassword === false) {
       res.render("auth/login.hbs", {
         errorMessage: "La contraseña no es correcta",
@@ -96,7 +94,6 @@ router.post("/login", async (req, res, next) => {
     }
     req.session.activeUser = foundUser;
     req.session.save(() => {});
-
     res.redirect("/profile/main");
   } catch (err) {
     next(err);
